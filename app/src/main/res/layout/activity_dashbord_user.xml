@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".PostAnOffer"
+    android:orientation="vertical"
+    android:weightSum="100"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="50"
+        >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:background="#AAb8b894"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="match_parent"
+
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/UserImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"
+
+                        tools:srcCompat="@tools:sample/avatars" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"
+                        android:background="#AAff9900"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/FirstNameUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nom "
+                            android:textStyle="bold|italic"
+
+
+                            android:paddingBottom="5dp"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"
+                        android:layout_marginTop="5dp"
+                        android:background="#AAff9900"
+                        >
+
+                        <TextView
+                            android:id="@+id/LastNameUser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Prnnom "
+                            android:textStyle="bold|italic"
+
+                            />
+                    </TableRow>
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="50"
+        android:weightSum="100"
+        android:orientation="vertical"
+
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:orientation="horizontal"
+
+        android:weightSum="100"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="wrap_content"
+
+            />
+        <Button
+            android:id="@+id/postOffer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="Post an Offer"
+            android:layout_gravity="center_horizontal"
+            android:onClick="postAnOffer"
+            android:drawableRight="@drawable/post_offer_icon"
+            android:fontFamily="@font/dancing_script"
+            android:textSize="17dp"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:layout_height="wrap_content"
+
+            />
+
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:weightSum="100"
+            android:orientation="horizontal"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+
+                />
+            <Button
+                android:id="@+id/searchForOffer"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:text="Search for Offers"
+                android:layout_gravity="center_horizontal"
+                android:onClick="SearchForOffers"
+                android:drawableRight="@drawable/search_icon"
+                android:fontFamily="@font/dancing_script"
+                android:textSize="17dp"
+               />
+
+
+
+                </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

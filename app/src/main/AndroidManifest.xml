@@ -25,7 +25,6 @@
             android:theme="@style/AppTheme2"/>
         <activity android:name=".VeryFirstActivity"
             android:theme="@style/AppTheme2">
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

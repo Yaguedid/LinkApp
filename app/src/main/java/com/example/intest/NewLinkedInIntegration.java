@@ -178,7 +178,7 @@ public class NewLinkedInIntegration extends Activity {
 
         @Override
         protected void onPreExecute() {
-            pd = ProgressDialog.show(NewLinkedInIntegration.this, "", "Loading function 2", true);
+            pd = ProgressDialog.show(NewLinkedInIntegration.this, "", "Loading com.example.intest.function 2", true);
         }
 
         @Override

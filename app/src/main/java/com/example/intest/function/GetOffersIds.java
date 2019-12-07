@@ -1,4 +1,6 @@
-package function;
+package com.example.intest.function;
+
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,11 +11,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class getOffersIds {
-    public List<String> domainList;
-    public List<String> typeList;
-    public List<String> reqList;
-    public List<String> skillsList;
+public class GetOffersIds {
+    public List<String> domainListme=new ArrayList<>();
+    public List<String> typeListme=new ArrayList<>();
+    public List<String> reqListme=new ArrayList<>();
+    public List<String> skillsListme=new ArrayList<>();
 
     List<String> ListIdsDomaine = new ArrayList<>();
     List<String> ListIdsType = new ArrayList<>();
@@ -21,23 +23,25 @@ public class getOffersIds {
     List<String> ListIdsSkills = new ArrayList<>();
 
     FirebaseDatabase database;
-    DatabaseReference offerSettingsRef,offerIdRef;
-   public void getOffersIds(){
+    DatabaseReference offerSettingsRef;
+
+
+
+    public GetOffersIds(){
 
    }
-    public void getOffersIds(List<String> domainList,List<String> skillsList,List<String> reqList,List<String> typeList){
-        domainList=new ArrayList<>(domainList);
-        reqList=new ArrayList<>(reqList);
-        skillsList=new ArrayList<>(skillsList);
-        typeList=new ArrayList<>(typeList);
+    public GetOffersIds(List<String> domainList, List<String> skillsList, List<String> reqList, List<String> typeList
+                         ){
+        domainListme=domainList;
+        reqListme=reqList;
+        skillsListme=skillsList;
+        typeListme=typeList;
         database = FirebaseDatabase.getInstance();
 
     }
 
-    private void getOfferIds() {
-
-
-        for(String domain:domainList)
+    public void getOfferIdsd(){
+        for(String domain:domainListme)
         {
             offerSettingsRef=database.getReference("Offer Domains").child(domain);
             offerSettingsRef.addValueEventListener(new ValueEventListener() {
@@ -59,7 +63,7 @@ public class getOffersIds {
 
         /**************/
         /***Skills ***/
-        for(String skill:skillsList)
+        for(String skill:skillsListme)
         {
             offerSettingsRef=database.getReference("Offer Skills").child(skill);
             offerSettingsRef.addValueEventListener(new ValueEventListener() {
@@ -79,7 +83,7 @@ public class getOffersIds {
         /**************/
         /***Requirements ***/
 
-        for(String req:reqList)
+        for(String req:reqListme)
         {
             offerSettingsRef=database.getReference("Offer Requirements").child(req);
             offerSettingsRef.addValueEventListener(new ValueEventListener() {
@@ -97,7 +101,7 @@ public class getOffersIds {
         }
         /**************/
         /***offer Type ***/
-        for(String type:typeList)
+        for(String type:typeListme)
         {
             offerSettingsRef=database.getReference("Offer Type").child(type);
             offerSettingsRef.addValueEventListener(new ValueEventListener() {
@@ -115,5 +119,21 @@ public class getOffersIds {
 
         }
 
+    }
+
+    public List<String> getListIdsDomaine() {
+        return ListIdsDomaine;
+    }
+
+    public List<String> getListIdsType() {
+        return ListIdsType;
+    }
+
+    public List<String> getListIdsRequirements() {
+        return ListIdsRequirements;
+    }
+
+    public List<String> getListIdsSkills() {
+        return ListIdsSkills;
     }
 }

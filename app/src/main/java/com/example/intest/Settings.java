@@ -29,6 +29,6 @@ public class Settings extends AppCompatActivity {
     }
     public void  ApplySettings(View view)
     {
-        startActivity(new Intent(Settings.this,DashbordUser.class));
+        startActivity(new Intent(Settings.this, WelcomeScreen.class));
     }
 }

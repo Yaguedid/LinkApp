@@ -1,5 +1,5 @@
 package com.example.intest;
-
+import com.example.intest.function.GetOffersIds;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.icu.util.LocaleData;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,18 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.intest.function.MatchingJob;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -83,14 +77,6 @@ public class SharchForOffer extends AppCompatActivity {
     List<String> ListIdsType = new ArrayList<>();
     List<String> ListIdsRequirements = new ArrayList<>();
     List<String> ListIdsSkills = new ArrayList<>();
-    List<String> ListOfMatchingJobs = new ArrayList<>();
-    List<Double> ListOfIndexes=new ArrayList<>();
-
-   private final int maxMatchingPoints=11;
-    private final int typeofOfferFactor=2;
-    private final int skillsOfferFactor=1;
-    private final int RequiOfferFactor=3;
-
    HashMap<String,String> MatchingJobsAndAverage=new HashMap<>();
     HashMap<String,String> MatchingJobsIdsAndTitles=new HashMap<>();
 
@@ -106,15 +92,7 @@ public class SharchForOffer extends AppCompatActivity {
         skillsList=new ArrayList<>();
         typeList=new ArrayList<>();
         database = FirebaseDatabase.getInstance();
-/****************************get offer id ******************/
 
-        offerIdRef = database.getReference("OfferIdNumber");
-        sharedPreferences=getSharedPreferences("offerId", MODE_PRIVATE);
-        editors=sharedPreferences.edit();
-        getOfferId();
-        offerid=sharedPreferences.getString("idOffer",null);
-
-/*********************************************/
 /****************************get user info ******************/
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
 
@@ -125,14 +103,6 @@ public class SharchForOffer extends AppCompatActivity {
         PictureUser=userinfo.getString("picture",null);
         instanciateViews();
 /*********************************************/
-/****************************set firebase conf ******************/
-
-
-
-
-
-/*********************************************/
-
     }
     public void instanciateViews()
     {
@@ -261,29 +231,7 @@ public class SharchForOffer extends AppCompatActivity {
         }else
         {
 
-          getOfferIds();
-
-
-
-
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-
-                   if(ListIdsDomaine.size()==0 || ListIdsSkills.size()==0  || ListIdsRequirements.size()==0 || ListIdsType.size()==0)
-                   {
-                       handler.post(this);
-
-                   }else
-                   {
-                      matchingJob();
-                   }
-
-                }
-            };
-
-            thread.start();
-
+            getOffersIds();
         }
     }
 
@@ -636,149 +584,13 @@ public class SharchForOffer extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
-    public void getOfferId()
-    {
-
-        offerIdRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                editors.remove("idOffer").commit();
-                editors.putString("idOffer",value);
-                editors.apply();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-
-
-            }
-        });
-
-    }
-
-
-    private void getOfferIds() {
-
-        for(String domain:domainList)
-        {
-            offerSettingsRef=database.getReference("Offer Domains").child(domain);
-            offerSettingsRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                        ListIdsDomaine.add(child.getValue().toString());
-
-
-                    }
-
-                }
-                @Override
-                public void onCancelled(DatabaseError error) {}
-            });
-
-
-        }
-
-        /**************/
-        /***Skills ***/
-        for(String skill:skillsList)
-        {
-            offerSettingsRef=database.getReference("Offer Skills").child(skill);
-            offerSettingsRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                        ListIdsSkills.add(child.getValue().toString());
-
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError error) {}
-            });
-
-        }
-
-        /**************/
-        /***Requirements ***/
-
-        for(String req:reqList)
-        {
-            offerSettingsRef=database.getReference("Offer Requirements").child(req);
-            offerSettingsRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                        ListIdsRequirements.add(child.getValue().toString());
-
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError error) {}
-            });
-
-        }
-        /**************/
-        /***offer Type ***/
-        for(String type:typeList)
-        {
-            offerSettingsRef=database.getReference("Offer Type").child(type);
-            offerSettingsRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                        ListIdsType.add(child.getValue().toString());
-
-                    }
-
-                }
-                @Override
-                public void onCancelled(DatabaseError error) {}
-            });
-
-        }
-
-    }
 
     private void matchingJob()
     {
-        double matchingScore=0;
-
-    for (String domain: ListIdsDomaine)
-    {
-        if(ListIdsRequirements.contains(domain))
-        {
-            int occurrences = Collections.frequency(ListIdsRequirements, domain);
-            matchingScore+=RequiOfferFactor*occurrences;
-        }
-        if(ListIdsSkills.contains(domain))
-        {
-            int occurrences = Collections.frequency(ListIdsSkills, domain);
-            matchingScore+=skillsOfferFactor*occurrences;
-        }
-        if(ListIdsType.contains(domain))
-        {
-            int occurrences = Collections.frequency(ListIdsType, domain);
-            matchingScore+=typeofOfferFactor*occurrences;
-        }
-        ListOfIndexes.add(matchingScore);
-        Collections.sort(ListOfIndexes, Collections.reverseOrder());
-        ListOfMatchingJobs.add(domain);
-        Double average=matchingScore/maxMatchingPoints;
-        average=average*100;
-        MatchingJobsAndAverage.put(domain,String.valueOf(average));
-        if(matchingScore>=ListOfIndexes.get(0))
-        {
-            int index = ListOfMatchingJobs.indexOf(domain);
-            ListOfMatchingJobs.remove(index);
-            ListOfMatchingJobs.add(0, domain);
-        }
-        getOfferTitle(domain);
-
-        matchingScore=0;
-    }
-
+        MatchingJob m=new MatchingJob(ListIdsDomaine,ListIdsType,ListIdsRequirements,ListIdsSkills);
+        m.matchingJob();
+        MatchingJobsAndAverage=m.getMatchingJobsAndAverage();
+        MatchingJobsIdsAndTitles=m.getMatchingJobsIdsAndTitles();
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -803,26 +615,34 @@ public class SharchForOffer extends AppCompatActivity {
 
 
     }
-    public void getOfferTitle(final String id)
+    private void getOffersIds()
     {
-        offerSettingsRef=database.getReference("Offers").child(id).child("Title");
-        offerSettingsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                MatchingJobsIdsAndTitles.put(id,value);
+        GetOffersIds r= new GetOffersIds(domainList,skillsList,reqList,typeList);
+        r.getOfferIdsd();
+        ListIdsDomaine=r.getListIdsDomaine();
+        ListIdsSkills=r.getListIdsSkills();
+        ListIdsRequirements=r.getListIdsRequirements();
+        ListIdsType=r.getListIdsType();
 
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+
+                if(ListIdsDomaine.size()==0 || ListIdsSkills.size()==0  || ListIdsRequirements.size()==0 || ListIdsType.size()==0)
+                {
+                    handler.post(this);
+
+                }else
+                {
+                    matchingJob();
+                }
 
             }
+        };
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
-
+        thread.start();
     }
+
 
 
 }

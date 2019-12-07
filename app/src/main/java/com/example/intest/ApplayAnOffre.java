@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ApplayAnOffre extends AppCompatActivity {
@@ -171,7 +167,7 @@ public class ApplayAnOffre extends AppCompatActivity {
                                     .setCancelable(false)
                                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent =new Intent( ApplayAnOffre.this, DashbordUser.class);
+                                            Intent intent =new Intent( ApplayAnOffre.this, DashbordEmployer.class);
                                             startActivity(intent);
                                         }
                                     })

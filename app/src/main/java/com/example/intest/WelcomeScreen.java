@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.InputStream;
 
 public class WelcomeScreen extends AppCompatActivity {
-private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser;
+private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser,StudentOrEmployer;
 TextView welcomeText;
 ImageView userImage;
     FirebaseDatabase database;
@@ -38,6 +37,7 @@ private SharedPreferences userinfo;
             LastNameUser=userinfo.getString("lastname",null);
             IdUser=userinfo.getString("id",null);
             PictureUser=userinfo.getString("picture",null);
+            StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
 
        /********************firebase**************/
         database = FirebaseDatabase.getInstance();
@@ -88,8 +88,10 @@ private SharedPreferences userinfo;
     }
     public void goToDashbord(View view)
     {
-        Intent intent=new Intent(WelcomeScreen.this,DashbordUser.class);
-        startActivity(intent);
+        if(StudentOrEmployer.equals("Employer"))
+        startActivity(new Intent(WelcomeScreen.this, DashbordEmployer.class));
+       else
+            startActivity(new Intent(WelcomeScreen.this, DashbordStudent.class));
     }
 
     @Override

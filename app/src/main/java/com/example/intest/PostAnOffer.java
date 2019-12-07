@@ -302,7 +302,7 @@ OfferDetailtsView=findViewById(R.id.offerBody);
                     .setCancelable(false)
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent =new Intent( PostAnOffer.this, DashbordUser.class);
+                            Intent intent =new Intent( PostAnOffer.this, DashbordEmployer.class);
                             startActivity(intent);
                         }
                     })

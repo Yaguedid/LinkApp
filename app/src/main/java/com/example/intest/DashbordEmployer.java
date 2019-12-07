@@ -21,10 +21,10 @@ import android.widget.Toast;
 
 import java.io.InputStream;
 
-public class DashbordUser extends AppCompatActivity {
-    private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser,StudentOrEmployer;
+public class DashbordEmployer extends AppCompatActivity {
+    private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser;
     private SharedPreferences userinfo;
-    Button PostAnOfferButton,SearchForAnOffer;
+    Button PostAnOfferButton;
     TextView FirstNameUserView,LastNameUserView;
     ImageView userImage;
     @Override
@@ -38,25 +38,20 @@ public class DashbordUser extends AppCompatActivity {
         LastNameUser=userinfo.getString("lastname",null);
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
-        StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
+
 
 
         instantiateViews();
     }
 
     private void instantiateViews() {
-        PostAnOfferButton=findViewById(R.id.searchForOffer);
-        SearchForAnOffer=findViewById(R.id.postOffer);
-        if(StudentOrEmployer.equals("Student"))
-            SearchForAnOffer.setVisibility(View.INVISIBLE);
-        if(StudentOrEmployer.equals("Employer"))
-            PostAnOfferButton.setVisibility(View.INVISIBLE);
+        PostAnOfferButton=findViewById(R.id.postOffer);
         FirstNameUserView=findViewById(R.id.FirstNameUser);
         LastNameUserView=findViewById(R.id.LastNameUser);
         userImage=findViewById(R.id.UserImage);
         FirstNameUserView.setText(FisrtnameUser);
         LastNameUserView.setText(LastNameUser);
-        new DashbordUser.DownloadImageTask((ImageView)userImage)
+        new DashbordEmployer.DownloadImageTask((ImageView)userImage)
                 .execute(PictureUser);
 
     }
@@ -88,69 +83,47 @@ public class DashbordUser extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
-        if(StudentOrEmployer.equals("Student"))
-        {
-            inflater.inflate(R.menu.menu_student,menu);
-        }else{
+
             inflater.inflate(R.menu.our_menu,menu);
-        }
+
 
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(StudentOrEmployer.equals("Student"))
-        {
-            switch (item.getItemId())
-            {
-                case R.id.myCv:
-                    Toast.makeText(DashbordUser.this,"myCv",Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.myInbox:
-                    startActivity(new Intent(DashbordUser.this,InboxForStudents.class));
-                    return true;
-                case R.id.settings:
-                    startActivity(new Intent(DashbordUser.this,Settings.class));
-                    return true;
-                case R.id.advanced_shearch:
-                   startActivity(new Intent(DashbordUser.this,SharchForOffer.class));
-                    return true;
-            }
-        }
-        else
-        {
-            switch (item.getItemId())
+
+         switch (item.getItemId())
             {
                 case R.id.myOffers:
-                    Toast.makeText(DashbordUser.this,"item1",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DashbordEmployer.this,"item1",Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.myInbox:
-                        startActivity(new Intent(DashbordUser.this, InboxForStudents.class));
+                        startActivity(new Intent(DashbordEmployer.this, InboxForEmployers.class));
                     return true;
                 case R.id.settings:
-                    startActivity(new Intent(DashbordUser.this, Settings.class));
+                    startActivity(new Intent(DashbordEmployer.this, Settings.class));
                     return true;
 
 
             }
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
     public void postAnOffer(View view)
     {
-        startActivity(new Intent(DashbordUser.this, PostAnOffer.class));
+        startActivity(new Intent(DashbordEmployer.this, PostAnOffer.class));
     }
     public void SearchForOffers(View view)
     {
-        startActivity(new Intent(DashbordUser.this, SharchForOffer.class));
+        startActivity(new Intent(DashbordEmployer.this, SharchForOffer.class));
     }
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(DashbordUser.this,WelcomeScreen.class));
+        startActivity(new Intent(DashbordEmployer.this,WelcomeScreen.class));
     }
 }

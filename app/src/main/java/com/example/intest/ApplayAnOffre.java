@@ -42,24 +42,14 @@ public class ApplayAnOffre extends AppCompatActivity {
     /**** Employer Detalils ****/
 
     ImageView EmployerImage;
-    TextView EmployerFirstName;
-    TextView EmployerLastName;
-    TextView EmployerEmaile;
-    TextView OffreTitle;
-    TextView OffreDescription;
+            TextView EmployerFirstName,EmployerLastName,EmployerEmaile,OffreTitle,OffreDescription,CompanyNameView;
+
+
 
 
     /* offer id */
-    String OffreId;
-
-    /*current use id */
-    String userId;
-
-  /*current use id */
-    String EmployerId;
-
-
-    Uri uri;
+    String OffreId,userId,EmployerId,CompanyNameText;
+     Uri uri;
 
     /* Databes Firebas */
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -71,20 +61,12 @@ public class ApplayAnOffre extends AppCompatActivity {
 
     /* data base storage */
     private StorageReference mStorageRef;
-    private Button uploadImag;
-    private Button applayButton;
+    private Button uploadImag,applayButton;
 
     private int PICK_IMAGE_INTENT=2;
     private ProgressDialog progressDialog;
-
-
-
     public Map<String, String> map= new HashMap<>();
     public Map<String, String> EmpMap= new HashMap<>();
-
-
-
-
     private SharedPreferences userinfo;
     String averageMatching;
     @Override
@@ -205,8 +187,10 @@ public class ApplayAnOffre extends AppCompatActivity {
                 String detail= map.get("Details");
                 String id= map.get("Poster Id");
                 String title= map.get("Title");
+                CompanyNameText=map.get("Company_name");
                 OffreTitle.setText(title);
                 OffreDescription.setText(detail);
+                CompanyNameView.setText(CompanyNameText);
                 EmployerId=id;
                 getEmplyer(id);
                // Log.d("mydata","details" + detail + "id " + id + " title" + title );
@@ -295,6 +279,7 @@ public class ApplayAnOffre extends AppCompatActivity {
         EmployerLastName =(TextView) findViewById(R.id.Employer_LastNameId);
         EmployerEmaile =(TextView) findViewById(R.id.Employer_EmailId);
         EmployerImage =(ImageView) findViewById(R.id.Employer_ImageId) ;
+        CompanyNameView=findViewById(R.id.Company_name);
 
 
         /* offre details */

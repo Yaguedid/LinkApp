@@ -22,23 +22,30 @@ public class MatchingJob {
     List<String> ListIdsTypeThis = new ArrayList<>();
     List<String> ListIdsRequirementsThis = new ArrayList<>();
     List<String> ListIdsSkillsThis = new ArrayList<>();
+    List<String> ListIdsCitiesThis = new ArrayList<>();
+    List<String> ListIdsPeriodsThis = new ArrayList<>();
 
     List<String> ListOfMatchingJobs = new ArrayList<>();
     List<Double> ListOfIndexes=new ArrayList<>();
-    private final int maxMatchingPoints=11;
+    private final int maxMatchingPoints=20;
     private final int typeofOfferFactor=2;
     private final int skillsOfferFactor=1;
     private final int RequiOfferFactor=3;
+    private final int CityOfferFactor=2;
+    private final int PeriodOfferFactor=2;
     private HashMap<String,String> MatchingJobsAndAverage=new HashMap<>();
     private HashMap<String,String> MatchingJobsIdsAndTitles=new HashMap<>();
     FirebaseDatabase database;
     DatabaseReference offerSettingsRef,offerIdRef;
 
-    public MatchingJob(List<String> listIdsDomaine, List<String> listIdsType, List<String> listIdsRequirements, List<String> listIdsSkills) {
+    public MatchingJob(List<String> listIdsDomaine, List<String> listIdsType, List<String> listIdsRequirements, List<String> listIdsSkills,
+                       List<String> listIdsCity,List<String> listIdsPeriod ) {
         ListIdsDomaineThis = listIdsDomaine;
         ListIdsTypeThis = listIdsType;
         ListIdsRequirementsThis = listIdsRequirements;
         ListIdsSkillsThis = listIdsSkills;
+        ListIdsCitiesThis=listIdsCity;
+        ListIdsPeriodsThis=listIdsPeriod;
         database = FirebaseDatabase.getInstance();
     }
 
@@ -65,6 +72,16 @@ public class MatchingJob {
             {
                 int occurrences = Collections.frequency(ListIdsTypeThis, domain);
                 matchingScore+=typeofOfferFactor*occurrences;
+            }
+            if(ListIdsPeriodsThis.contains(domain))
+            {
+                int occurrences = Collections.frequency(ListIdsPeriodsThis, domain);
+                matchingScore+=PeriodOfferFactor*occurrences;
+            }
+            if(ListIdsCitiesThis.contains(domain))
+            {
+                int occurrences = Collections.frequency(ListIdsCitiesThis, domain);
+                matchingScore+=CityOfferFactor*occurrences;
             }
             ListOfIndexes.add(matchingScore);
             Collections.sort(ListOfIndexes, Collections.reverseOrder());

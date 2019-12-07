@@ -34,33 +34,25 @@ public class SharchForOffer extends AppCompatActivity {
     public List<Integer> mTypeItems = new ArrayList<>();
     public List<Integer> mReqItems = new ArrayList<>();
     public List<Integer> mSkillsrItems = new ArrayList<>();
+    public List<Integer> mCitiesItems = new ArrayList<>();
+    public List<Integer> mPeriodsItems = new ArrayList<>();
+
     public List<String> domainList;
     public List<String> typeList;
     public List<String> reqList;
     public List<String> skillsList;
+    public List<String> periodeList;
+    public List<String> citiesList;
     public Boolean firstTime=true;
     Handler handler = new Handler();
     public CountDownLatch done;
 
-    /*----  Domaine ----*/
-    TextView domaineItemSelected;
-    Button domaineItemsBtn;
-    String[] domaineListItems;
-    /*----  Types ----*/
-    TextView TypeItemSelected;
-    Button TypeItemsBtn;
-    String[] TypeListItems;
-    /* -- Requirements -- */
-    TextView requiremtnItemSelected;
-    Button RequirementsItemsBtn;
-    String[] requirementListItems;
-    /* -- Skills -- */
-    TextView skillsItemSelected;
-    Button skillsItemsBtn;
-    String[] skillsListItems;
-    /* -- poustuler btn --*/
-    private Button poustulerBtn;
-    /* -- title offre --*/
+
+    TextView domaineItemSelected,TypeItemSelected,requiremtnItemSelected,skillsItemSelected,cityItemSelected,periodeItemSelected;
+    Button domaineItemsBtn,TypeItemsBtn,RequirementsItemsBtn,skillsItemsBtn,cityItmesBtn,periodeItemsBtn,poustulerBtn;
+    String[] domaineListItems,TypeListItems,requirementListItems,skillsListItems,cityListItems,periodeListItems;
+
+
     private EditText TittleOffre;
 
     /******************/
@@ -77,6 +69,8 @@ public class SharchForOffer extends AppCompatActivity {
     List<String> ListIdsType = new ArrayList<>();
     List<String> ListIdsRequirements = new ArrayList<>();
     List<String> ListIdsSkills = new ArrayList<>();
+    List<String> ListIdsCities = new ArrayList<>();
+    List<String> ListIdsPeriods = new ArrayList<>();
    HashMap<String,String> MatchingJobsAndAverage=new HashMap<>();
     HashMap<String,String> MatchingJobsIdsAndTitles=new HashMap<>();
 
@@ -91,6 +85,8 @@ public class SharchForOffer extends AppCompatActivity {
         reqList=new ArrayList<>();
         skillsList=new ArrayList<>();
         typeList=new ArrayList<>();
+        periodeList=new ArrayList<>();
+        citiesList=new ArrayList<>();
         database = FirebaseDatabase.getInstance();
 
 /****************************get user info ******************/
@@ -109,12 +105,16 @@ public class SharchForOffer extends AppCompatActivity {
         FirstNameView=findViewById(R.id.FirstNameId);
         LastNameView=findViewById(R.id.LastNameId);
         PictureView=findViewById(R.id.imageViewId);
+        cityItemSelected=findViewById(R.id.id_TextVillePrefere);
+        periodeItemSelected=findViewById(R.id.id_TextPeriodeStage);
         FirstNameView.setText(FisrtnameUser);
         LastNameView.setText(LastNameUser);
         OfferTitleView=findViewById(R.id.id_TittleOffre);
         OfferDetailtsView=findViewById(R.id.offerBody);
         new SharchForOffer.DownloadImageTask((ImageView)PictureView)
                 .execute(PictureUser);
+        cityItmesBtn=findViewById(R.id.id_Ville_prefere);
+        periodeItemsBtn=findViewById(R.id.id_periode_de_stage);
 
         /* +++ Domaine +++ */
         domaineItemsBtn = (Button) findViewById(R.id.id_Domain);
@@ -135,7 +135,8 @@ public class SharchForOffer extends AppCompatActivity {
         skillsItemsBtn = (Button) findViewById(R.id.id_Skills);
         skillsItemSelected = (TextView) findViewById(R.id.id_TextSkills);
         skillsListItems = getResources().getStringArray(R.array.skills_item);
-
+        cityListItems=getResources().getStringArray(R.array.city_item);
+        periodeListItems=getResources().getStringArray(R.array.period_item);
         /* -- poustuler btn --*/
 
         poustulerBtn = (Button) findViewById(R.id.postule_Btn);
@@ -190,6 +191,22 @@ public class SharchForOffer extends AppCompatActivity {
                 showSkillsListItemes(skillsListItems,skillsItemSelected);
             }
         });
+        cityItmesBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            showCitiesListItemes(cityListItems,cityItemSelected);
+        }
+    });
+
+        periodeItemsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showPeriodListItemes(periodeListItems,periodeItemSelected);
+            }
+        });
+
 
         poustulerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,6 +243,14 @@ public class SharchForOffer extends AppCompatActivity {
             if (skillsList.isEmpty()) {
                 skillsItemSelected.setText("please select a choice !");
                 skillsItemSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+            }
+            if (citiesList.isEmpty()) {
+                cityItemSelected.setText("please select a choice !");
+                cityItemSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+            }
+            if (periodeList.isEmpty()) {
+                periodeItemSelected.setText("please select a choice !");
+                periodeItemSelected.setTextColor(getResources().getColor(R.color.colorAccent));
             }
 
         }else
@@ -560,6 +585,181 @@ public class SharchForOffer extends AppCompatActivity {
         mDialog.show();
 
     }
+    /*----------------------------------------------------------------------------------------------------------------*/
+    private void showCitiesListItemes(final String[] itemsResTab, final TextView textView){
+
+        final boolean[] checkedskillsItems;
+
+        checkedskillsItems = new boolean[itemsResTab.length];
+
+        citiesList= new ArrayList<>();
+        //   reqList= new ArrayList<>();
+        // skillsList= new ArrayList<>();
+
+
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SharchForOffer.this);
+
+        mBuilder.setTitle(R.string.dialog_title);
+
+        mBuilder.setMultiChoiceItems(itemsResTab, checkedskillsItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+
+                if(isChecked){
+                    mCitiesItems.add(position);
+                }else{
+                    mCitiesItems.remove((Integer.valueOf(position)));
+                }
+            }
+        });
+
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                String item = "";
+                for (int i = 0; i < mCitiesItems.size(); i++) {
+                    if(! citiesList.contains(itemsResTab[mCitiesItems.get(i)] )) {
+                        item = item + itemsResTab[mCitiesItems.get(i)] + ", ";
+                        citiesList.add(itemsResTab[mCitiesItems.get(i)]);
+
+                    }
+                }
+
+
+                if(item.equals("")){
+                    textView.setText("no items selected !");
+                    textView.setTextColor(getResources().getColor(R.color.colorAccent));
+                }else {
+                    textView.setText(item);
+                    textView.setTextColor(getResources().getColor(R.color.colorPrimary));}
+
+
+            }
+        });
+
+        mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                citiesList.clear();
+                for (int i = 0; i < checkedskillsItems.length; i++) {
+                    checkedskillsItems[i] = false;}
+
+                mCitiesItems.clear();
+
+                textView.setText("no items selected !");
+                textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+
+
+
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+    }
+    /*----------------------------------------------------------------------------------------------------------------*/
+    private void showPeriodListItemes(final String[] itemsResTab, final TextView textView){
+
+        final boolean[] checkedskillsItems;
+
+        checkedskillsItems = new boolean[itemsResTab.length];
+
+        periodeList= new ArrayList<>();
+        //   reqList= new ArrayList<>();
+        // skillsList= new ArrayList<>();
+
+
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SharchForOffer.this);
+
+        mBuilder.setTitle(R.string.dialog_title);
+
+        mBuilder.setMultiChoiceItems(itemsResTab, checkedskillsItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+
+                if(isChecked){
+                    mPeriodsItems.add(position);
+                }else{
+                    mPeriodsItems.remove((Integer.valueOf(position)));
+                }
+            }
+        });
+
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                String item = "";
+                for (int i = 0; i < mPeriodsItems.size(); i++) {
+                    if(! periodeList.contains(itemsResTab[mPeriodsItems.get(i)] )) {
+                        item = item + itemsResTab[mPeriodsItems.get(i)] + ", ";
+                        periodeList.add(itemsResTab[mPeriodsItems.get(i)]);
+
+                    }
+                }
+
+
+                if(item.equals("")){
+                    textView.setText("no items selected !");
+                    textView.setTextColor(getResources().getColor(R.color.colorAccent));
+                }else {
+                    textView.setText(item);
+                    textView.setTextColor(getResources().getColor(R.color.colorPrimary));}
+
+
+            }
+        });
+
+        mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                periodeList.clear();
+                for (int i = 0; i < checkedskillsItems.length; i++) {
+                    checkedskillsItems[i] = false;}
+
+                mPeriodsItems.clear();
+
+                textView.setText("no items selected !");
+                textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+
+
+
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+    }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
@@ -587,7 +787,7 @@ public class SharchForOffer extends AppCompatActivity {
 
     private void matchingJob()
     {
-        MatchingJob m=new MatchingJob(ListIdsDomaine,ListIdsType,ListIdsRequirements,ListIdsSkills);
+        MatchingJob m=new MatchingJob(ListIdsDomaine,ListIdsType,ListIdsRequirements,ListIdsSkills,ListIdsCities,ListIdsPeriods);
         m.matchingJob();
         MatchingJobsAndAverage=m.getMatchingJobsAndAverage();
         MatchingJobsIdsAndTitles=m.getMatchingJobsIdsAndTitles();
@@ -617,18 +817,20 @@ public class SharchForOffer extends AppCompatActivity {
     }
     private void getOffersIds()
     {
-        GetOffersIds r= new GetOffersIds(domainList,skillsList,reqList,typeList);
+        GetOffersIds r= new GetOffersIds(domainList,skillsList,reqList,typeList,citiesList,periodeList);
         r.getOfferIdsd();
         ListIdsDomaine=r.getListIdsDomaine();
         ListIdsSkills=r.getListIdsSkills();
         ListIdsRequirements=r.getListIdsRequirements();
         ListIdsType=r.getListIdsType();
+        ListIdsCities=r.getListIdsCities();
+        ListIdsPeriods=r.getListIdsPeriods();
 
         Thread thread = new Thread() {
             @Override
             public void run() {
 
-                if(ListIdsDomaine.size()==0 || ListIdsSkills.size()==0  || ListIdsRequirements.size()==0 || ListIdsType.size()==0)
+                if(ListIdsDomaine.size()==0 || ListIdsSkills.size()==0  || ListIdsRequirements.size()==0 || ListIdsType.size()==0|| ListIdsCities.size()==0|| ListIdsPeriods.size()==0)
                 {
                     handler.post(this);
 

@@ -16,11 +16,15 @@ public class GetOffersIds {
     public List<String> typeListme=new ArrayList<>();
     public List<String> reqListme=new ArrayList<>();
     public List<String> skillsListme=new ArrayList<>();
+    public List<String> citiesListme=new ArrayList<>();
+    public List<String> periodsListme=new ArrayList<>();
 
     List<String> ListIdsDomaine = new ArrayList<>();
     List<String> ListIdsType = new ArrayList<>();
     List<String> ListIdsRequirements = new ArrayList<>();
     List<String> ListIdsSkills = new ArrayList<>();
+    List<String> ListIdsCities = new ArrayList<>();
+    List<String> ListIdsPeriods = new ArrayList<>();
 
     FirebaseDatabase database;
     DatabaseReference offerSettingsRef;
@@ -30,12 +34,14 @@ public class GetOffersIds {
     public GetOffersIds(){
 
    }
-    public GetOffersIds(List<String> domainList, List<String> skillsList, List<String> reqList, List<String> typeList
-                         ){
+    public GetOffersIds(List<String> domainList, List<String> skillsList, List<String> reqList, List<String> typeList,
+                        List<String> cityList,List<String> periodList){
         domainListme=domainList;
         reqListme=reqList;
         skillsListme=skillsList;
         typeListme=typeList;
+        citiesListme=cityList;
+        periodsListme=periodList;
         database = FirebaseDatabase.getInstance();
 
     }
@@ -118,6 +124,40 @@ public class GetOffersIds {
             });
 
         }
+        for(String city:citiesListme)
+        {
+            offerSettingsRef=database.getReference("Offer City").child(city);
+            offerSettingsRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                        ListIdsCities.add(child.getValue().toString());
+
+                    }
+
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {}
+            });
+
+        }
+        for(String period:periodsListme)
+        {
+            offerSettingsRef=database.getReference("Offer Period").child(period);
+            offerSettingsRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                        ListIdsPeriods.add(child.getValue().toString());
+
+                    }
+
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {}
+            });
+
+        }
 
     }
 
@@ -135,5 +175,13 @@ public class GetOffersIds {
 
     public List<String> getListIdsSkills() {
         return ListIdsSkills;
+    }
+
+    public List<String> getListIdsCities() {
+        return ListIdsCities;
+    }
+
+    public List<String> getListIdsPeriods() {
+        return ListIdsPeriods;
     }
 }

@@ -40,15 +40,18 @@ public class PostAnOffer extends AppCompatActivity {
         public List<String> typeList;
         public List<String> reqList;
         public List<String> skillsList;
-
+    public List<Integer> mCitiesItems = new ArrayList<>();
+    public List<Integer> mPeriodsItems = new ArrayList<>();
+    public List<String> periodeList;
+    public List<String> citiesList;
         /*----  Domaine ----*/
         TextView domaineItemSelected;
         Button domaineItemsBtn;
         String[] domaineListItems;
         /*----  Types ----*/
-        TextView TypeItemSelected;
-        Button TypeItemsBtn;
-        String[] TypeListItems;
+        TextView TypeItemSelected,cityItemSelected,periodeItemSelected;
+        Button TypeItemsBtn,periodeItemsBtn,cityItmesBtn;
+        String[] TypeListItems,cityListItems,periodeListItems;
         /* -- Requirements -- */
         TextView requiremtnItemSelected;
         Button RequirementsItemsBtn;
@@ -60,7 +63,7 @@ public class PostAnOffer extends AppCompatActivity {
         /* -- poustuler btn --*/
         private Button poustulerBtn;
         /* -- title offre --*/
-        private EditText TittleOffre;
+        private EditText TittleOffre,CompanyName;
 
 /******************/
         FirebaseDatabase database;
@@ -72,7 +75,7 @@ public class PostAnOffer extends AppCompatActivity {
         private String EmailUser, FisrtnameUser, LastNameUser, IdUser, PictureUser;
     TextView FirstNameView, LastNameView,OfferTitleView,OfferDetailtsView;
     ImageView PictureView;
-    String OfferTitle,OfferDetails;
+    String OfferTitle,OfferDetails,CompanyNameText;
 /************************/
 
     @Override
@@ -84,6 +87,8 @@ public class PostAnOffer extends AppCompatActivity {
         reqList=new ArrayList<>();
         skillsList=new ArrayList<>();
         typeList=new ArrayList<>();
+        periodeList=new ArrayList<>();
+        citiesList=new ArrayList<>();
         database = FirebaseDatabase.getInstance();
 /****************************get offer id ******************/
 
@@ -103,19 +108,20 @@ userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
         instanciateViews();
-/*********************************************/
-/****************************set firebase conf ******************/
-
-
-
-
-
-/*********************************************/
+        cityListItems=getResources().getStringArray(R.array.city_item);
+        periodeListItems=getResources().getStringArray(R.array.period_item);
 
     }
 
 public void instanciateViews()
 {
+    CompanyName=findViewById(R.id.id_NameCompany);
+    CompanyNameText=CompanyName.getText().toString().trim();
+
+    cityItemSelected=findViewById(R.id.id_TextVillePrefere);
+    periodeItemSelected=findViewById(R.id.id_TextPeriodeStage);
+    cityItmesBtn=findViewById(R.id.id_Ville_prefere);
+    periodeItemsBtn=findViewById(R.id.id_periode_de_stage);
 FirstNameView=findViewById(R.id.FirstNameId);
 LastNameView=findViewById(R.id.LastNameId);
 PictureView=findViewById(R.id.imageViewId);
@@ -145,6 +151,7 @@ OfferDetailtsView=findViewById(R.id.offerBody);
     skillsItemsBtn = (Button) findViewById(R.id.id_Skills);
     skillsItemSelected = (TextView) findViewById(R.id.id_TextSkills);
     skillsListItems = getResources().getStringArray(R.array.skills_item);
+
 
     /* -- poustuler btn --*/
 
@@ -200,7 +207,21 @@ OfferDetailtsView=findViewById(R.id.offerBody);
             showSkillsListItemes(skillsListItems,skillsItemSelected);
         }
     });
+    cityItmesBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
+            showCitiesListItemes(cityListItems,cityItemSelected);
+        }
+    });
+
+    periodeItemsBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            showPeriodListItemes(periodeListItems,periodeItemSelected);
+        }
+    });
     poustulerBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -243,12 +264,16 @@ OfferDetailtsView=findViewById(R.id.offerBody);
                     /********************************Send to FireBase************************/
                     OfferTitle=OfferTitleView.getText().toString();
                     OfferDetails=OfferDetailtsView.getText().toString();
+                    CompanyNameText=CompanyName.getText().toString();
             offerSettingsRef=database.getReference("Offers").child(offerid).child("Poster Id");
             offerSettingsRef.setValue(IdUser);
             offerSettingsRef=database.getReference("Offers").child(offerid).child("Details");
             offerSettingsRef.setValue(OfferDetails);
             offerSettingsRef=database.getReference("Offers").child(offerid).child("Title");
             offerSettingsRef.setValue(OfferTitle);
+            offerSettingsRef=database.getReference("Offers").child(offerid).child("Company_name");
+            offerSettingsRef.setValue(CompanyNameText);
+
 
             /***Domains ***/
             for(String domain:domainList)
@@ -280,6 +305,18 @@ OfferDetailtsView=findViewById(R.id.offerBody);
             for(String type:typeList)
             {
                 offerSettingsRef=database.getReference("Offer Type").child(type).child("Offer Id"+offerid);
+                offerSettingsRef.setValue(offerid);
+
+            }
+            for(String city:citiesList)
+            {
+                offerSettingsRef=database.getReference("Offer City").child(city).child("Offer Id"+offerid);
+                offerSettingsRef.setValue(offerid);
+
+            }
+            for(String period:periodeList)
+            {
+                offerSettingsRef=database.getReference("Offer Period").child(period).child("Offer Id"+offerid);
                 offerSettingsRef.setValue(offerid);
 
             }
@@ -623,6 +660,177 @@ OfferDetailtsView=findViewById(R.id.offerBody);
                     checkedTypesItems[i] = false;}
 
                 mTypeItems.clear();
+
+                textView.setText("no items selected !");
+                textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+
+
+
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+    }
+    private void showCitiesListItemes(final String[] itemsResTab, final TextView textView){
+
+        final boolean[] checkedskillsItems;
+
+        checkedskillsItems = new boolean[itemsResTab.length];
+
+        citiesList= new ArrayList<>();
+        //   reqList= new ArrayList<>();
+        // skillsList= new ArrayList<>();
+
+
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(PostAnOffer.this);
+
+        mBuilder.setTitle(R.string.dialog_title);
+
+        mBuilder.setMultiChoiceItems(itemsResTab, checkedskillsItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+
+                if(isChecked){
+                    mCitiesItems.add(position);
+                }else{
+                    mCitiesItems.remove((Integer.valueOf(position)));
+                }
+            }
+        });
+
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                String item = "";
+                for (int i = 0; i < mCitiesItems.size(); i++) {
+                    if(! citiesList.contains(itemsResTab[mCitiesItems.get(i)] )) {
+                        item = item + itemsResTab[mCitiesItems.get(i)] + ", ";
+                        citiesList.add(itemsResTab[mCitiesItems.get(i)]);
+
+                    }
+                }
+
+
+                if(item.equals("")){
+                    textView.setText("no items selected !");
+                    textView.setTextColor(getResources().getColor(R.color.colorAccent));
+                }else {
+                    textView.setText(item);
+                    textView.setTextColor(getResources().getColor(R.color.colorPrimary));}
+
+
+            }
+        });
+
+        mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                citiesList.clear();
+                for (int i = 0; i < checkedskillsItems.length; i++) {
+                    checkedskillsItems[i] = false;}
+
+                mCitiesItems.clear();
+
+                textView.setText("no items selected !");
+                textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+
+
+
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+
+    }
+    /*----------------------------------------------------------------------------------------------------------------*/
+    private void showPeriodListItemes(final String[] itemsResTab, final TextView textView){
+
+        final boolean[] checkedskillsItems;
+
+        checkedskillsItems = new boolean[itemsResTab.length];
+
+        periodeList= new ArrayList<>();
+        //   reqList= new ArrayList<>();
+        // skillsList= new ArrayList<>();
+
+
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(PostAnOffer.this);
+
+        mBuilder.setTitle(R.string.dialog_title);
+
+        mBuilder.setMultiChoiceItems(itemsResTab, checkedskillsItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+
+                if(isChecked){
+                    mPeriodsItems.add(position);
+                }else{
+                    mPeriodsItems.remove((Integer.valueOf(position)));
+                }
+            }
+        });
+
+        mBuilder.setCancelable(false);
+
+        mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                String item = "";
+                for (int i = 0; i < mPeriodsItems.size(); i++) {
+                    if(! periodeList.contains(itemsResTab[mPeriodsItems.get(i)] )) {
+                        item = item + itemsResTab[mPeriodsItems.get(i)] + ", ";
+                        periodeList.add(itemsResTab[mPeriodsItems.get(i)]);
+
+                    }
+                }
+
+
+                if(item.equals("")){
+                    textView.setText("no items selected !");
+                    textView.setTextColor(getResources().getColor(R.color.colorAccent));
+                }else {
+                    textView.setText(item);
+                    textView.setTextColor(getResources().getColor(R.color.colorPrimary));}
+
+
+            }
+        });
+
+        mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                periodeList.clear();
+                for (int i = 0; i < checkedskillsItems.length; i++) {
+                    checkedskillsItems[i] = false;}
+
+                mPeriodsItems.clear();
 
                 textView.setText("no items selected !");
                 textView.setTextColor(getResources().getColor(R.color.colorAccent));

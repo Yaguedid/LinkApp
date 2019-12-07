@@ -10,6 +10,8 @@
     <string name="select_type">Select Offer Type</string>
     <string name="requiremments">Select Offer Requirements</string>
     <string name="skills_and_experiences">Skills and Experiences</string>
+    <string name="Ville_prefere">Ville préférée</string>
+    <string name="Periode_stage">Période de Stage</string>
     <string name="postuler">Apply</string>
     <string-array name="domaine_item">
         <item>Mobile Development</item>
@@ -38,5 +40,18 @@
         <item>Java EE </item>
         <item>Flutter</item>
         <item>JavaScript</item>
+    </string-array>
+    <string-array name="city_item">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Fes</item>
+        <item>Tanger EE </item>
+        <item>El Jadida</item>
+        <item>Marrackech</item>
+    </string-array>
+    <string-array name="period_item">
+        <item>2 mois</item>
+        <item>3 mois</item>
+        <item>6 mois</item>
     </string-array>
 </resources>

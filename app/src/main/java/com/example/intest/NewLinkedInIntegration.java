@@ -71,7 +71,7 @@ public class NewLinkedInIntegration extends Activity {
     private ProgressDialog pd;
     String deviceId, location, country;
     String linkedInUserId, linkedInUserFirstName, linkedInUserLastName, linkedInUserProfile;
-    public String StudentOrEmployer="";
+    public String StudentOrEmployer="",firstTime="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -304,6 +304,7 @@ public class NewLinkedInIntegration extends Activity {
                 linkedInUserId!=null &&  linkedInUserProfile!=null )
         {
             StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
+
             myeditor=userinfo.edit();
             myeditor.putString("firstname",linkedInUserFirstName);
             myeditor.putString("lastname",linkedInUserLastName);
@@ -351,11 +352,7 @@ public class NewLinkedInIntegration extends Activity {
                 pd.dismiss();
             }
             if (data != null) {
-                Log.d("zbfirstname",linkedInUserFirstName);
-                Log.d("zblastname",linkedInUserLastName);
-                Log.d("zbid",linkedInUserId);
-                Log.d("zbpict",linkedInUserProfile);
-                Log.d("zbemail",linkedInUserEmailAddress);
+
                 if(linkedInUserFirstName!=null && linkedInUserLastName!=null &&
                         linkedInUserId!=null &&  linkedInUserProfile!=null )
                 {

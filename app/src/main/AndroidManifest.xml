@@ -36,6 +36,8 @@
         <activity
             android:name=".InboxForEmployers"
             android:theme="@style/AppTheme2" />
+
+        <activity android:name=".TabsHolder"/>
         <activity
             android:name=".VeryFirstActivity"
             android:theme="@style/AppTheme2">
@@ -62,6 +64,7 @@
         <activity
             android:name=".PostAnOffer"
             android:theme="@style/AppTheme2" />
+
     </application>
 
 </manifest>

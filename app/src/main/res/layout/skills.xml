@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3EC2D5FD"
+    android:layout_margin="7dp">
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+
+        >
+
+
+
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="7dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select your skills"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="17dp"
+
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                   <Button
+                       android:id="@+id/skiils_id"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="skills ?"
+                       android:background="#3EC2D5FD"/>
+                    <TextView
+                        android:id="@+id/skills_selected"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                         />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </TableRow>
+        <TableRow
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_margin="7dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="choose your languge"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="17dp"
+
+
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <Button
+
+                        android:id="@+id/langue_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lngauge ?"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#3EC2D5FD"
+                        />
+
+                    <TextView
+                        android:id="@+id/langue_selected"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:text="your languges are :"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </TableRow>
+
+
+
+
+    </TableLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="end|bottom"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/nex_skills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+
+            />
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

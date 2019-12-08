@@ -54,4 +54,90 @@
         <item>3 mois</item>
         <item>6 mois</item>
     </string-array>
+
+
+    <string name="tab_text_1">You ?</string>
+    <string name="tab_text_2">Education</string>
+    <string name="tab_text_3">Skills</string>
+    <string name="tab_text_4">Offres</string>
+
+    <string-array name="city">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Fes</item>
+        <item>Tanger</item>
+        <item>Marrakech</item>
+        <item>Zagora</item>
+
+    </string-array>
+
+    <string-array name="years">
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+
+
+    </string-array>
+
+    <string-array name="months">
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avrile</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>juillet</item>
+        <item>août</item>
+        <item>septembre</item>
+        <item>septembre</item>
+        <item>octobre</item>
+        <item>novembre</item>
+        <item>décembre</item>
+
+    </string-array>
+    <string-array name="day">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+    <string-array name="languge">
+        <item>English</item>
+        <item>French</item>
+        <item>Arabic</item>
+
+    </string-array>
+
+
 </resources>

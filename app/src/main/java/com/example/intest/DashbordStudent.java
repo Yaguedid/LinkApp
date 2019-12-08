@@ -24,12 +24,15 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashbordStudent extends AppCompatActivity {
     TextView FirstNameUserView,LastNameUserView;
     private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser;
     private SharedPreferences userinfo;
     ImageView userImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,8 @@ public class DashbordStudent extends AppCompatActivity {
         LastNameUser=userinfo.getString("lastname",null);
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
+
+
         instantiateViews();
     }
     private void setAdds() {

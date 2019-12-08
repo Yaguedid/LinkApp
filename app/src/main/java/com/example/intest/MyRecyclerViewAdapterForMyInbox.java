@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,25 +48,44 @@ public class MyRecyclerViewAdapterForMyInbox  extends RecyclerView.Adapter<MyRec
     @Override
     public int getItemCount() {
         return NameOfCandidate.size();
-    }
 
+    }
+public void delete(int position)
+{
+    MatchingAvList.remove(position);
+    NameOfCandidate.remove(position);
+    notifyItemRemoved(position);
+
+}
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView offerIdTitleView;
         TextView matchingOfferAv;
+        Button deleteButt;
 
 
         ViewHolder(View itemView) {
             super(itemView);
             offerIdTitleView = itemView.findViewById(R.id.OfferTitleId);
+            deleteButt=itemView.findViewById(R.id.deleteButt);
             matchingOfferAv=itemView.findViewById(R.id.MatchinAvId);
             itemView.setOnClickListener(this);
+            deleteButt.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if(view.getId()==R.id.deleteButt)
+            {
+                InboxForEmployers.getInstance().addToListRemove(getAdapterPosition());
+                delete(getAdapterPosition());
+
+            }else
+            {
+                if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            }
+
         }
     }
 

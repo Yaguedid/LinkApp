@@ -25,15 +25,22 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashbordEmployer extends AppCompatActivity {
     private String EmailUser, FisrtnameUser, LastNameUser, IdUser, PictureUser;
     private SharedPreferences userinfo;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     Button PostAnOfferButton;
     TextView FirstNameUserView, LastNameUserView;
     ImageView userImage;
+    List<String> ListToRemove=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,10 @@ public class DashbordEmployer extends AppCompatActivity {
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
         instantiateViews();
+        Intent intent=getIntent();
+        ListToRemove=intent.getStringArrayListExtra("ListToRemove");
+        database = FirebaseDatabase.getInstance();
+
     }
 
     private void setAdds() {
@@ -115,6 +126,20 @@ public class DashbordEmployer extends AppCompatActivity {
                     Toast.makeText(DashbordEmployer.this,"item1",Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.myInbox:
+                    if(ListToRemove!=null)
+                    {
+                        if(ListToRemove.size()>0)
+                        {
+                            for(String d:ListToRemove)
+                            {
+                                myRef  = database.getReference("EmployersInbox").child(IdUser).child(d);
+                                myRef.removeValue();
+                            }
+
+                        }
+                        ListToRemove.clear();
+
+                    }
                         startActivity(new Intent(DashbordEmployer.this, InboxForEmployers.class));
                     return true;
                 case R.id.settings:

@@ -21,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,7 +78,7 @@ public class ApplayAnOffre extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applay_an_offre);
-
+        setAdds();
 
 
          userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
@@ -291,5 +296,15 @@ public class ApplayAnOffre extends AppCompatActivity {
         uploadImag =(Button) findViewById(R.id.UplodCv_BtnId);
         applayButton =(Button) findViewById(R.id.applay_Btn);
 
+    }
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adViewi);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 }

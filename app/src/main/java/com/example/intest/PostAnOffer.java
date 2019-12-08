@@ -18,6 +18,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,7 +87,7 @@ public class PostAnOffer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_an_offer);
-
+setAdds();
         domainList=new ArrayList<>();
         reqList=new ArrayList<>();
         skillsList=new ArrayList<>();
@@ -890,6 +895,16 @@ OfferDetailtsView=findViewById(R.id.offerBody);
             }
         });
 
+    }
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adViewi);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 }

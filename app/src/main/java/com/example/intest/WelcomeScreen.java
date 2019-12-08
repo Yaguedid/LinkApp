@@ -12,7 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,6 +28,7 @@ public class WelcomeScreen extends AppCompatActivity {
 private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser,StudentOrEmployer;
 TextView welcomeText;
 ImageView userImage;
+    String FirstTime="";
     FirebaseDatabase database;
     DatabaseReference myRef;
 private SharedPreferences userinfo;
@@ -29,7 +36,7 @@ private SharedPreferences userinfo;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_welcome);
-
+setAdds();
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
 
             EmailUser=userinfo.getString("email",null);
@@ -91,12 +98,30 @@ private SharedPreferences userinfo;
         if(StudentOrEmployer.equals("Employer"))
         startActivity(new Intent(WelcomeScreen.this, DashbordEmployer.class));
        else
+        {
+            FirstTime=userinfo.getString("FirstTime",null);
+            if(FirstTime==null)
+                Toast.makeText(WelcomeScreen.this,"firstTime",Toast.LENGTH_SHORT).show();
+            else
             startActivity(new Intent(WelcomeScreen.this, DashbordStudent.class));
+        }
+
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(WelcomeScreen.this,VeryFirstActivity.class));
+    }
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adViewh);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.intest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,11 +10,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.intest.function.SendSms;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,13 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class CV extends AppCompatActivity {
+public class CV_Display extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference offerSettingsRef;
     TextView FullNameView,BirthDayView,PhoneView,CityView,EmailView,LanguagesView,SkillsView,ProfileView,DiplomeView,
     DomaineView,OfferTypeView;
     ImageView imageUser;
-    String candidateId="PrCQ7QHDMl";
+    String candidateId;
     HashMap<String,String> user=new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,7 @@ public class CV extends AppCompatActivity {
     }
     private void setDataToViews()
     {
-        new CV.DownloadImageTask((ImageView)imageUser)
+        new CV_Display.DownloadImageTask((ImageView)imageUser)
                 .execute(user.get("Picture"));
         FullNameView.setText(user.get("FirstName")+" "+user.get("LastName"));
         BirthDayView.setText(user.get("Date_Of_Birth"));
@@ -133,7 +138,7 @@ public class CV extends AppCompatActivity {
 
     public void yes(View view)
     {
-        Intent intent=new Intent(CV.this, SendSms.class);
+        Intent intent=new Intent(CV_Display.this, SendSms.class);
         intent.putExtra("FullNameCandidate",user.get("FirstName")+" "+user.get("LastName"));
         intent.putExtra("OfferType",user.get("Type_Shearched_Offer"));
         intent.putExtra("PhoneNumber",user.get("Phone"));
@@ -142,7 +147,28 @@ public class CV extends AppCompatActivity {
     }
     public void no(View view)
     {
-        Toast.makeText(CV.this,"NO!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(CV_Display.this,"NO!",Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.cv_menu, menu);
+
+
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.download_cv:
+                Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+        }
+        return true;
+    }
 }

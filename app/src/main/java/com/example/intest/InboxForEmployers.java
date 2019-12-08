@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,7 +56,7 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent=new Intent(InboxForEmployers.this,CV.class);
+        Intent intent=new Intent(InboxForEmployers.this, CV_Display.class);
         intent.putExtra("candidateId",MatchingCandidatesListIds.get(position));
            startActivity(intent);
     }

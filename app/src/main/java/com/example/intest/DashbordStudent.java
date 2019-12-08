@@ -17,6 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.io.InputStream;
 
 public class DashbordStudent extends AppCompatActivity {
@@ -28,6 +34,7 @@ public class DashbordStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashbord_student);
+        setAdds();
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
 
         EmailUser=userinfo.getString("email",null);
@@ -36,6 +43,16 @@ public class DashbordStudent extends AppCompatActivity {
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
         instantiateViews();
+    }
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adViewh);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

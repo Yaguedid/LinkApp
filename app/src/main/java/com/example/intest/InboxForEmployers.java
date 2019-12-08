@@ -10,6 +10,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +42,7 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matching_candidates_recycle);
+        setAdds();
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
         userId=userinfo.getString("id",null);
         database = FirebaseDatabase.getInstance();
@@ -163,5 +169,14 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
         }
         setRecycle();
     }
-
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adViewh);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
 }

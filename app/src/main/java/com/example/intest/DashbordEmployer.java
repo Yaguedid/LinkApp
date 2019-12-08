@@ -19,29 +19,45 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.io.InputStream;
 
 public class DashbordEmployer extends AppCompatActivity {
-    private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser;
+    private String EmailUser, FisrtnameUser, LastNameUser, IdUser, PictureUser;
     private SharedPreferences userinfo;
     Button PostAnOfferButton;
-    TextView FirstNameUserView,LastNameUserView;
+    TextView FirstNameUserView, LastNameUserView;
     ImageView userImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashbord_user);
+        setAdds();
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
-
         EmailUser=userinfo.getString("email",null);
         FisrtnameUser=userinfo.getString("firstname",null);
         LastNameUser=userinfo.getString("lastname",null);
         IdUser=userinfo.getString("id",null);
         PictureUser=userinfo.getString("picture",null);
-
-
-
         instantiateViews();
+    }
+
+    private void setAdds() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void instantiateViews() {

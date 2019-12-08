@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +57,9 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
 
     @Override
     public void onItemClick(View view, int position) {
-            Toast.makeText(InboxForEmployers.this,MatchingCandidatesListIds.get(position)+"",Toast.LENGTH_LONG).show();
+        Intent intent=new Intent(InboxForEmployers.this,CV.class);
+        intent.putExtra("candidateId",MatchingCandidatesListIds.get(position));
+           startActivity(intent);
     }
 
 

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.intest">
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,13 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CV"
-            android:theme="@style/AppTheme2"
-            >
-
-
-
-        </activity>
+        <activity android:name=".SendSms"></activity>
+        <activity
+            android:name=".CV"
+            android:theme="@style/AppTheme2"></activity>
         <activity android:name=".DashbordStudent" />
         <activity android:name=".Settings" />
         <activity

@@ -9,9 +9,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +28,7 @@ public class CV extends AppCompatActivity {
     DatabaseReference offerSettingsRef;
     TextView FullNameView,BirthDayView,PhoneView,CityView,EmailView,LanguagesView,SkillsView,ProfileView,DiplomeView,
     DomaineView,OfferTypeView;
-ImageView imageUser;
+    ImageView imageUser;
     String candidateId="PrCQ7QHDMl";
     HashMap<String,String> user=new HashMap<>();
     @Override
@@ -36,10 +37,10 @@ ImageView imageUser;
         setContentView(R.layout.cv_layout);
         database = FirebaseDatabase.getInstance();
         Intent intent=getIntent();
-       /* if(intent!=null)
+      if(intent!=null)
         {
             candidateId=intent.getStringExtra("candidateId");
-        }*/
+        }
         instantiateViews();
         getFromFireBase();
 
@@ -129,4 +130,19 @@ ImageView imageUser;
             bmImage.setImageBitmap(result);
         }
     }
+
+    public void yes(View view)
+    {
+        Intent intent=new Intent(CV.this, SendSms.class);
+        intent.putExtra("FullNameCandidate",user.get("FirstName")+" "+user.get("LastName"));
+        intent.putExtra("OfferType",user.get("Type_Shearched_Offer"));
+        intent.putExtra("PhoneNumber",user.get("Phone"));
+        startActivity(intent);
+
+    }
+    public void no(View view)
+    {
+        Toast.makeText(CV.this,"NO!",Toast.LENGTH_SHORT).show();
+    }
+
 }

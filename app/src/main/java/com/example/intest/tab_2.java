@@ -43,6 +43,7 @@ public class tab_2 extends Fragment {
 
 
     Context context;
+    public static tab_2  tab2_var;
 
 
 
@@ -52,6 +53,7 @@ public class tab_2 extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.education, container, false);
 
+        tab2_var=this;
         context=this.getActivity();
         mBuilder = new AlertDialog.Builder(this.getActivity());
         box1 =(CheckBox) root.findViewById(R.id.bacPlus_2);
@@ -80,26 +82,7 @@ public class tab_2 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boolean b1 = false;
-                Boolean b2 = false;
-                Boolean b3 = false;
-                Boolean b4 = false;
-                int counter=0;
 
-                if (box1.isChecked()) { counter=counter+1;}
-                if (box2.isChecked()) { counter=counter+1;}
-                if (box3.isChecked()) { counter=counter+1;}
-                if (box4.isChecked()) { counter=counter+1;}
-
-                if(counter==1){
-                    if (box1.isChecked()) { niveuEtude="Bac+2";}
-                    if (box2.isChecked()) {niveuEtude="Bac+3";}
-                    if (box3.isChecked()) { niveuEtude="Bac+4";}
-                    if (box4.isChecked()) {niveuEtude="Bac+5";}
-
-                }else {
-                    Toast.makeText(context,"please choose one diplome !",Toast.LENGTH_SHORT).show();
-                }
             }
 
 
@@ -197,5 +180,45 @@ public class tab_2 extends Fragment {
             }
             textView.setText(item);
             textView.setTextColor(getResources().getColor(R.color.colorPrimary));
-        }}
+        }else {
+            textView.setText("no item is selected");
+            textView.setTextColor(getResources().getColor(R.color.colorAccent));
+
+        }
+    }
+
+    public void chekInfo(){
+
+        Boolean b1 = false;
+        Boolean b2 = false;
+        Boolean b3 = false;
+        Boolean b4 = false;
+        int counter=0;
+
+        if (box1.isChecked()) { counter=counter+1;}
+        if (box2.isChecked()) { counter=counter+1;}
+        if (box3.isChecked()) { counter=counter+1;}
+        if (box4.isChecked()) { counter=counter+1;}
+
+        if(counter==1){
+            if (box1.isChecked()) { niveuEtude="Bac+2";}
+            if (box2.isChecked()) {niveuEtude="Bac+3";}
+            if (box3.isChecked()) { niveuEtude="Bac+4";}
+            if (box4.isChecked()) {niveuEtude="Bac+5";}
+
+            TabsHolder.getInstance().chekMap.put("education_diplome","true");
+        }
+
+
+        if(! domainList.isEmpty() )  TabsHolder.getInstance().chekMap.put("education_domaine","true");
+
+    }
+
+    public static tab_2 getInstance(){
+        return tab2_var;
+    }
+
+
+
+
 }

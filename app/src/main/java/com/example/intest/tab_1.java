@@ -68,12 +68,15 @@ public class tab_1 extends Fragment   {
 
     Context context;
 
+    public static tab_1  tab1_var;
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, final ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.pesonal_information, container, false);
 
+        tab1_var=this;
         context=this.getActivity();
         userImage=(ImageView) root.findViewById(R.id.user_ImageId);
         userName=(EditText) root.findViewById(R.id.user_name);
@@ -128,25 +131,6 @@ public class tab_1 extends Fragment   {
             @Override
             public void onClick(View v) {
 
-                name =userName.getText().toString();
-                lastName =userLastName.getText().toString();
-                email =userEmail.getText().toString();
-                phone =userPhone.getText().toString();
-
-                city = userCity.getSelectedItem().toString();
-                birthDate=Daybirth.getSelectedItem().toString()+"-"+ Monthbirth.getSelectedItem().toString()+"-"+Yearbirth.getSelectedItem().toString();
-
-                if(name.isEmpty()||lastName.isEmpty()||email.isEmpty()||phone.isEmpty()||city.isEmpty()||birthDate.isEmpty()){
-                    Toast.makeText(context,"please complet your data ",Toast.LENGTH_SHORT).show();
-
-                }else {
-
-                    //here where you got your data
-                    //---> upload to FireBase
-
-                }
-
-
 
 
             }
@@ -157,23 +141,60 @@ public class tab_1 extends Fragment   {
         return root;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("frag","im posed");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("frag","im reusmed");
+    }
+
     private void initUserInfo() {
 
-                Picasso.with(getActivity()).load("https://media.licdn.com/dms/image/C4D03AQGVFKFu7quDXw/profile-displayphoto-shrink_100_100/0?e=1581552000&v=beta&t=bsjTy5dFDcBk6mkloiAAPyL_ktPTKwYaex7MiaZtncM").into(userImage);
-                userName.setText("redouan");
-                userLastName.setText("eddafali");
-                userEmail.setText("xxx@gmail.com");
-
-            }
-
+        Picasso.with(getActivity()).load("https://media.licdn.com/dms/image/C4D03AQGVFKFu7quDXw/profile-displayphoto-shrink_100_100/0?e=1581552000&v=beta&t=bsjTy5dFDcBk6mkloiAAPyL_ktPTKwYaex7MiaZtncM").into(userImage);
+        userName.setText("redouan");
+        userLastName.setText("eddafali");
+        userEmail.setText("xxx@gmail.com");
 
     }
 
+        public  void chekInfo(){
+
+            name =userName.getText().toString();
+            lastName =userLastName.getText().toString();
+            email =userEmail.getText().toString();
+            phone =userPhone.getText().toString();
+
+            city = userCity.getSelectedItem().toString();
+            birthDate=Daybirth.getSelectedItem().toString()+"-"+ Monthbirth.getSelectedItem().toString()+"-"+Yearbirth.getSelectedItem().toString();
+
+            if(!name.isEmpty())TabsHolder.getInstance().chekMap.put("peron_name","true");
+            if(!lastName.isEmpty())TabsHolder.getInstance().chekMap.put("Peron_lastname","true");
+            if(!email.isEmpty())TabsHolder.getInstance().chekMap.put("Peron_email","true");
+            if(!phone.isEmpty())TabsHolder.getInstance().chekMap.put("Peron_phone","true");
+            if(!birthDate.isEmpty())TabsHolder.getInstance().chekMap.put("Peron_birth_date","true");
+            if(!city.isEmpty())TabsHolder.getInstance().chekMap.put("Peron_city","true");
+
+
+        }
+
+        public static tab_1 getInstance(){
+        return tab1_var;
+        }
+
+
+}
 
 
 
 
-    /* -------------- ------------------------------- --------------------------- --------------------------- */
+
+
+/* -------------- ------------------------------- --------------------------- --------------------------- */
 
 
 /* load image from phone

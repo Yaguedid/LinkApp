@@ -38,11 +38,16 @@ public class tab_3  extends Fragment {
     AlertDialog.Builder langueBuilder ;
 
     Context context;
+    public static tab_3  tab3_var;
+
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.skills, container, false);
+
+        tab3_var=this;
         context=this.getActivity();
         skillBuilder = new AlertDialog.Builder(context);
         langueBuilder = new AlertDialog.Builder(context);
@@ -64,7 +69,6 @@ public class tab_3  extends Fragment {
         checkIfListEmpty(skillsList,skillsSelected);
         checkIfListEmpty(langueList,LangugeSelected);
 
-        Toast.makeText(context,"skills =  "+skillsList.size(),Toast.LENGTH_SHORT).show();
 
 
         chooseSkills.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +94,7 @@ public class tab_3  extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(langueList.isEmpty() || skillsList.isEmpty() ){
-                    Toast.makeText(context,"please complet your data !",Toast.LENGTH_SHORT).show();
-                }else {
-                    //here you start your code
-                    //uplod to firebase
-                }
+
             }
         });
 
@@ -270,5 +269,16 @@ public class tab_3  extends Fragment {
             textView.setText(item);
             textView.setTextColor(getResources().getColor(R.color.colorPrimary));
         }}
+
+    public void chekInfo(){
+
+        if(! skillsList.isEmpty() )  TabsHolder.getInstance().chekMap.put("skills","true");
+        if(! langueList.isEmpty() )  TabsHolder.getInstance().chekMap.put("skills_langue","true");
+    }
+
+    public static tab_3 getInstance(){
+        return tab3_var;
+    }
+
 
 }

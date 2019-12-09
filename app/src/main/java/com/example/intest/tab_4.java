@@ -4,6 +4,7 @@ package com.example.intest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -80,7 +82,6 @@ public class tab_4 extends Fragment {
         selectOffre.setOnClickListener(new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-
 
                                                final boolean[] checkedItems;
 
@@ -245,15 +246,8 @@ public class tab_4 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(offersList.isEmpty()|| PeriodList.isEmpty()){
-                    Toast.makeText(context,"plese complate your data !",Toast.LENGTH_SHORT).show();
+                confirmeData();
 
-                }else {
-
-                    //here where you get your data
-                    //uplod to firebase
-
-                }
             }
         });
 
@@ -273,4 +267,35 @@ public class tab_4 extends Fragment {
             textView.setText(item);
             textView.setTextColor(getResources().getColor(R.color.colorPrimary));
         }}
+
+
+
+    private void chekInfo(){
+
+        if(!offersList.isEmpty())  TabsHolder.getInstance().chekMap.put("offre_type","true");
+        if(!PeriodList.isEmpty())  TabsHolder.getInstance().chekMap.put("offre_period","true");
+    }
+
+
+    public  void confirmeData(){
+
+          tab_1.getInstance().chekInfo();
+          tab_2.getInstance().chekInfo();
+          tab_3.getInstance().chekInfo();
+          chekInfo();
+
+        Log.d("zb44" , TabsHolder.getInstance().chekMap.toString() +"");
+
+         HashMap<String,String> resultkMap= new HashMap<String, String>( TabsHolder.getInstance().chekMap);
+
+          for(String bool: resultkMap.values()){
+              if(bool.equals("false")){
+                  Toast.makeText(context,"complet your data ",Toast.LENGTH_SHORT).show();
+              }
+
+
+          }
+
+
+    }
 }

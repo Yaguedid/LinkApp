@@ -37,9 +37,9 @@
             android:name=".InboxForEmployers"
             android:theme="@style/AppTheme2" />
 
-        <activity android:name=".TabsHolder"/>
+        <activity android:name=".VeryFirstActivity"/>
         <activity
-            android:name=".VeryFirstActivity"
+            android:name=".TabsHolder"
             android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

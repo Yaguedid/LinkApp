@@ -51,7 +51,7 @@ public class SharchForOffer extends AppCompatActivity {
     public Boolean firstTime=true;
     Handler handler = new Handler();
     public CountDownLatch done;
-
+    List<String> ListToRemove=new ArrayList<>();
 
     TextView domaineItemSelected,TypeItemSelected,requiremtnItemSelected,skillsItemSelected,cityItemSelected,periodeItemSelected;
     Button domaineItemsBtn,TypeItemsBtn,RequirementsItemsBtn,skillsItemsBtn,cityItmesBtn,periodeItemsBtn,poustulerBtn;
@@ -93,6 +93,8 @@ setAdds();
         periodeList=new ArrayList<>();
         citiesList=new ArrayList<>();
         database = FirebaseDatabase.getInstance();
+
+
 
 /****************************get user info ******************/
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
@@ -262,6 +264,7 @@ setAdds();
         {
 
             getOffersIds();
+
         }
     }
 

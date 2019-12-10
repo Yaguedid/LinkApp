@@ -154,7 +154,7 @@ public class ApplayAnOffre extends AppCompatActivity {
                                     .setCancelable(false)
                                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent =new Intent( ApplayAnOffre.this, DashbordEmployer.class);
+                                            Intent intent =new Intent( ApplayAnOffre.this, DashbordStudent.class);
                                             startActivity(intent);
                                         }
                                     })

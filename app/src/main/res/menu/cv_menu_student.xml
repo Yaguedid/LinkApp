@@ -9,5 +9,12 @@
 
         app:showAsAction="ifRoom"
         />
+    <item
+        android:icon="@drawable/edit_icon"
+        android:title="item1"
+        android:id="@+id/edit_cv"
+
+        app:showAsAction="ifRoom"
+        />
 
 </menu>

@@ -8,13 +8,7 @@
         android:id="@+id/settings"
         app:showAsAction="ifRoom"
         />
-        <item android:id="@+id/myInbox"
-            android:icon="@drawable/settings_icon"
-            android:title="My Inbox"
-            app:showAsAction="never"
 
-
-            ></item>
 
         <item android:id="@+id/myCv"
             android:icon="@drawable/myicon"

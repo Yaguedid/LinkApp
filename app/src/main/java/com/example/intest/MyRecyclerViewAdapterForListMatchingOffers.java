@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class MyRecyclerViewAdapterForListMatchingOffers extends RecyclerView.Ada
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.row_layout, parent, false);
+        View view = mInflater.inflate(R.layout.row_layout_matching_offers, parent, false);
         return new ViewHolder(view);
     }
 
@@ -50,7 +51,13 @@ public class MyRecyclerViewAdapterForListMatchingOffers extends RecyclerView.Ada
     public int getItemCount() {
         return OfferTitle.size();
     }
+    public void delete(int position)
+    {
+        MatchingAvList.remove(position);
+        OfferTitle.remove(position);
+        notifyItemRemoved(position);
 
+    }
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -58,16 +65,21 @@ public class MyRecyclerViewAdapterForListMatchingOffers extends RecyclerView.Ada
         TextView matchingOfferAv;
 
 
+
         ViewHolder(View itemView) {
             super(itemView);
             offerIdTitleView = itemView.findViewById(R.id.OfferTitleId);
             matchingOfferAv=itemView.findViewById(R.id.MatchinAvId);
+
             itemView.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+
+                if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+
         }
     }
 

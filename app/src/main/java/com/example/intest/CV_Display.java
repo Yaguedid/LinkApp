@@ -232,7 +232,7 @@ public class CV_Display extends AppCompatActivity {
             public void onSuccess(Uri uri) {
 
                 CV_URL=uri.toString();
-                Log.d("zbzbzb",CV_URL);
+                Log.d("zbzbzbb",CV_URL);
 
 
             }

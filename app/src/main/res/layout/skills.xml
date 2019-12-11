@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select your skills"
+                    android:text="choisissez vos Compétances"
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"
@@ -56,7 +56,7 @@
                        android:id="@+id/skiils_id"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:text="skills ?"
+                       android:text="Compétances ?"
                        android:background="@color/Verifcation_Button"/>
                     <TextView
                         android:id="@+id/skills_selected"
@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="choose your languge"
+                    android:text="choisissez Vos languges "
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"
@@ -112,7 +112,7 @@
                         android:id="@+id/langue_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lngauge ?"
+                        android:text="Langues ?"
                         android:layout_gravity="center_horizontal"
                         android:background="@color/Verifcation_Button"
                         />

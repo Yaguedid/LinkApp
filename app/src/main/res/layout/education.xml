@@ -115,7 +115,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Doamine"
+                        android:text="Domaine"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"
@@ -135,7 +135,7 @@
                              android:id="@+id/geni_id"
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
-                             android:text="Geni ?"
+                             android:text="Génie ?"
                              android:layout_gravity="center_horizontal"
                              android:background="@color/Verifcation_Button"
                              />

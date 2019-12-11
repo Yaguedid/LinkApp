@@ -184,7 +184,10 @@ public class CV_Display extends AppCompatActivity {
         if(StudentOrEmployer.equals("Employer"))
         switch (item.getItemId()) {
             case R.id.download_cv_candidate:
-                Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
+
+
+
+
                 return true;
 
 

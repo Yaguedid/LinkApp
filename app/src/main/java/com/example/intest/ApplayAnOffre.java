@@ -103,8 +103,8 @@ public class ApplayAnOffre extends AppCompatActivity {
 
                 Intent intent =new Intent(Intent.ACTION_PICK);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                //intent.setType("application/pdf");
-                intent.setType("image/*");
+                intent.setType("application/pdf");
+               // intent.setType("image/*");
                 startActivityForResult(intent,PICK_IMAGE_INTENT);
             }
         });

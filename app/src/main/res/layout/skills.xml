@@ -57,7 +57,7 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:text="skills ?"
-                       android:background="#3EC2D5FD"/>
+                       android:background="@color/Verifcation_Button"/>
                     <TextView
                         android:id="@+id/skills_selected"
                         android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:text="Lngauge ?"
                         android:layout_gravity="center_horizontal"
-                        android:background="#3EC2D5FD"
+                        android:background="@color/Verifcation_Button"
                         />
 
                     <TextView
@@ -138,23 +138,6 @@
     </TableLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:gravity="end|bottom"
-        android:layout_marginBottom="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_weight="1">
-
-        <Button
-            android:id="@+id/nex_skills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-
-            />
-    </LinearLayout>
 
 
 

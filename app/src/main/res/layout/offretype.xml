@@ -37,7 +37,7 @@
             android:id="@+id/offre_looking_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3EC2D5FD"
+            android:background="@color/Verifcation_Button"
             android:text="Offres you looking for ?" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:id="@+id/period_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3EC2D5FD"
+            android:background="@color/Verifcation_Button"
             android:text="Period ?" />
 
         <TextView

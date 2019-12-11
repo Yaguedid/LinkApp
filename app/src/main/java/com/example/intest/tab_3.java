@@ -1,4 +1,4 @@
-package com.example.intest;
+ package com.example.intest;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,7 +22,7 @@ public class tab_3  extends Fragment {
 
     Button chooseSkills;
     Button chooseLanguge;
-    Button next;
+
     TextView skillsSelected;
     TextView LangugeSelected;
 
@@ -40,6 +40,8 @@ public class tab_3  extends Fragment {
     Context context;
     public static tab_3  tab3_var;
 
+    Boolean FILED_VERIFICATION=false;
+
 
     @Override
     public View onCreateView(
@@ -55,7 +57,7 @@ public class tab_3  extends Fragment {
 
         chooseLanguge=(Button)root.findViewById(R.id.langue_id);
         chooseSkills=(Button)root.findViewById(R.id.skiils_id);
-        next=(Button)root.findViewById(R.id.nex_skills);
+
 
         skillsSelected=(TextView) root.findViewById(R.id.skills_selected);
         LangugeSelected=(TextView) root.findViewById(R.id.langue_selected);
@@ -65,9 +67,10 @@ public class tab_3  extends Fragment {
 
 
 
-
+        chekIfFiledEmpty();
         checkIfListEmpty(skillsList,skillsSelected);
         checkIfListEmpty(langueList,LangugeSelected);
+
 
 
 
@@ -76,6 +79,8 @@ public class tab_3  extends Fragment {
             public void onClick(View v) {
 
                 showSkillsItemes();
+
+
             }
 
 
@@ -84,31 +89,29 @@ public class tab_3  extends Fragment {
         chooseLanguge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showLangugeItems();
+
             }
 
 
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-            }
-        });
 
         return root;
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
 
-
-
-
-
-
+        chekIfFiledEmpty();
+        checkIfListEmpty(skillsList,skillsSelected);
+        checkIfListEmpty(langueList,LangugeSelected);
+    }
 
     private void showSkillsItemes(){
         final boolean[] checkedItems;
@@ -150,9 +153,13 @@ public class tab_3  extends Fragment {
                 if(item.equals("")){
                     skillsSelected.setText("no items selected !");
                     skillsSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+
+
                 }else {
                     skillsSelected.setText(item);
-                    skillsSelected.setTextColor(getResources().getColor(R.color.colorPrimary));}
+                    skillsSelected.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    chooseSkills.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));
+                }
             }
         });
 
@@ -224,7 +231,8 @@ public class tab_3  extends Fragment {
                     LangugeSelected.setTextColor(getResources().getColor(R.color.colorAccent));
                 }else {
                     LangugeSelected.setText(item);
-                    LangugeSelected.setTextColor(getResources().getColor(R.color.colorPrimary));}
+                    LangugeSelected.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    chooseLanguge.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));}
             }
         });
 
@@ -273,11 +281,33 @@ public class tab_3  extends Fragment {
     public void chekInfo(){
 
         if(! skillsList.isEmpty() )  TabsHolder.getInstance().chekMap.put("skills","true");
+        else  TabsHolder.getInstance().chekMap.put("skills","false");
+
         if(! langueList.isEmpty() )  TabsHolder.getInstance().chekMap.put("skills_langue","true");
+        else TabsHolder.getInstance().chekMap.put("skills_langue","false");
     }
 
     public static tab_3 getInstance(){
         return tab3_var;
+    }
+
+    public void chekIfFiledEmpty() {
+        if(FILED_VERIFICATION==true) {
+
+            if (skillsList.isEmpty()) {
+                skillsSelected.setText("no items selected !");
+                skillsSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+                chooseSkills.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            }
+
+            if (langueList.isEmpty()) {
+                LangugeSelected.setText("no items selected !");
+                LangugeSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+                chooseLanguge.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            }
+
+        }
+
     }
 
 

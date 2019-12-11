@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,18 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class tab_2 extends Fragment {
+public class tab_2 extends Fragment implements CompoundButton.OnCheckedChangeListener {
 
 
     CheckBox box1;
     CheckBox box2;
     CheckBox box3;
     CheckBox box4;
+   public static int counter=0;
 
     String niveuEtude;
 
     Button select_geni;
-    Button next;
+
     TextView itemsSelected;
 
 
@@ -44,8 +47,12 @@ public class tab_2 extends Fragment {
 
     Context context;
     public static tab_2  tab2_var;
+    Boolean FILED_VERIFICATION=false;
+    Boolean BOX_VERIFICATION=false;
 
-
+    Boolean isCheckBoxCheked=false;
+    Boolean isCheckInChekBoxesIsTrue=false;
+    int numberOfCheckBoxesCheked=0;
 
     @Override
     public View onCreateView(
@@ -60,41 +67,42 @@ public class tab_2 extends Fragment {
         box2 =(CheckBox) root.findViewById(R.id.bacPlus_3);
         box3 =(CheckBox) root.findViewById(R.id.bacPlus_4);
         box4 =(CheckBox) root.findViewById(R.id.bacPlus_5);
-        next=(Button)root.findViewById(R.id.next_id);
         select_geni=(Button) root.findViewById(R.id.geni_id);
         itemsSelected=(TextView)root.findViewById(R.id.geni_selected_id);
         domaineListItems =getResources().getStringArray(R.array.domaine_item);
 
-        checkIfListEmpty(domainList,itemsSelected);
+
 
         select_geni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     showListItemes(domaineListItems,itemsSelected);
+
+
+
             }
 
         }
         );
 
-
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-
-
-
-            //here where you get your data
-            //uplod to firebase
-        });
+        box1.setOnCheckedChangeListener(this);
+        box2.setOnCheckedChangeListener(this);
+        box3.setOnCheckedChangeListener(this);
+        box4.setOnCheckedChangeListener(this);
 
 
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        chekIfFiledEmpty();
+        checkIfListEmpty(domainList,itemsSelected);
+        if(FILED_VERIFICATION==true){
+            select_geni.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));        }
+    }
 
     private void showListItemes(final String[] itemsResTab, final TextView textView){
 
@@ -131,6 +139,8 @@ public class tab_2 extends Fragment {
                     if(! domainList.contains(itemsResTab[mDomainItems.get(i)] )) {
                         item = item + itemsResTab[mDomainItems.get(i)] + ",\n ";
                         domainList.add(itemsResTab[mDomainItems.get(i)]);
+                        select_geni.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));
+
 
                     }
                 }
@@ -180,37 +190,48 @@ public class tab_2 extends Fragment {
             }
             textView.setText(item);
             textView.setTextColor(getResources().getColor(R.color.colorPrimary));
-        }else {
-            textView.setText("no item is selected");
-            textView.setTextColor(getResources().getColor(R.color.colorAccent));
 
         }
+
     }
 
     public void chekInfo(){
+        numberOfCheckBoxesCheked=0;
+        isCheckBoxCheked=false;
+            if(box1.isChecked()){
+                isCheckBoxCheked=true;
+                numberOfCheckBoxesCheked++;
+            }
+            if(box2.isChecked()){
+                isCheckBoxCheked=true;
+                numberOfCheckBoxesCheked++;
+            }
+            if(box3.isChecked()){
+                isCheckBoxCheked=true;
+                numberOfCheckBoxesCheked++;
+            }
+            if(box4.isChecked()){
+                isCheckBoxCheked=true;
+                numberOfCheckBoxesCheked++;
+            }
 
-        Boolean b1 = false;
-        Boolean b2 = false;
-        Boolean b3 = false;
-        Boolean b4 = false;
-        int counter=0;
+            if(isCheckBoxCheked && numberOfCheckBoxesCheked ==1) isCheckInChekBoxesIsTrue=true;
+            else
+                isCheckInChekBoxesIsTrue=false;
+            if(isCheckInChekBoxesIsTrue){
+                if(box1.isChecked())niveuEtude="BAC+2";
+                if(box2.isChecked())niveuEtude="BAC+3";
+                if(box3.isChecked())niveuEtude="BAC+4";
+                if(box4.isChecked())niveuEtude="BAC+5";
+                TabsHolder.getInstance().chekMap.put("education_diplome","true");
 
-        if (box1.isChecked()) { counter=counter+1;}
-        if (box2.isChecked()) { counter=counter+1;}
-        if (box3.isChecked()) { counter=counter+1;}
-        if (box4.isChecked()) { counter=counter+1;}
+            }else {
+                niveuEtude="";
+                TabsHolder.getInstance().chekMap.put("education_diplome","false");
+            }
 
-        if(counter==1){
-            if (box1.isChecked()) { niveuEtude="Bac+2";}
-            if (box2.isChecked()) {niveuEtude="Bac+3";}
-            if (box3.isChecked()) { niveuEtude="Bac+4";}
-            if (box4.isChecked()) {niveuEtude="Bac+5";}
-
-            TabsHolder.getInstance().chekMap.put("education_diplome","true");
-        }
-
-
-        if(! domainList.isEmpty() )  TabsHolder.getInstance().chekMap.put("education_domaine","true");
+            if(! domainList.isEmpty() )  TabsHolder.getInstance().chekMap.put("education_domaine","true");
+            else  TabsHolder.getInstance().chekMap.put("education_domaine","false");
 
     }
 
@@ -218,7 +239,42 @@ public class tab_2 extends Fragment {
         return tab2_var;
     }
 
+    private void chekIfFiledEmpty() {
+        if(FILED_VERIFICATION==true) {
+
+            itemsSelected.setText("no items selected !");
+            itemsSelected.setTextColor(getResources().getColor(R.color.colorAccent));
+            select_geni.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+            if (counter ==0 || counter >1)
+            {box1.setTextColor(getResources().getColor(R.color.colorAccent));
+              box2.setTextColor(getResources().getColor(R.color.colorAccent));
+              box3.setTextColor(getResources().getColor(R.color.colorAccent));
+              box4.setTextColor(getResources().getColor(R.color.colorAccent));}
+
+
+            BOX_VERIFICATION=true;
+            FILED_VERIFICATION=false;
+        }else {
+            select_geni.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));
+
+        }
+
+
+    }
 
 
 
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+            box1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            box2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            box3.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            box4.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+
+    }
 }

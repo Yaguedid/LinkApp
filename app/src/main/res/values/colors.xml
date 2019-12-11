@@ -9,4 +9,6 @@
     <color name="myWeight">#E7DBD9</color>
     <color name="myYellow">#FFEB3B</color>
     <color name="myDark">#6B000000</color>
+    <color name="Verifcation_Button">#6B000000</color>
+
 </resources>

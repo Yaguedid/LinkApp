@@ -44,7 +44,7 @@
                         android:id="@+id/chooseImg_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="choose image"
+                        android:text="update image"
 
                         />
 
@@ -69,9 +69,11 @@
                     >
 
                     <TextView
+                        android:id="@+id/naameFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Name"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginRight="17dp"
@@ -107,9 +109,11 @@
                 >
 
                 <TextView
+                    android:id="@+id/lasnameFiled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Last Name"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginRight="17dp"
@@ -122,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    />
 
 
             </LinearLayout>
@@ -145,12 +150,14 @@
                     >
 
                     <TextView
+                        android:id="@+id/emalFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Email"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginRight="17dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginBottom="8dp"
+                        android:text="Your Email"
 
                         />
 
@@ -185,12 +192,14 @@
                     >
 
                     <TextView
+                        android:id="@+id/phoneFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Phone"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginRight="17dp"
+                        android:textColor="@color/colorPrimaryDark"
                         />
 
                     <EditText
@@ -225,6 +234,7 @@
                     >
 
                     <TextView
+                        android:id="@+id/cityFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -232,6 +242,8 @@
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:text="Your City"
+                        android:textColor="@color/colorPrimaryDark"
+
 
                         />
 
@@ -265,11 +277,12 @@
                     >
 
                     <TextView
+                        android:id="@+id/birthdayFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-
+                        android:textColor="@color/colorPrimaryDark"
                         android:text="Birth Day"
 
                         />
@@ -297,33 +310,6 @@
                         android:layout_weight="2"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"/>
-
-
-                </LinearLayout>
-
-            </TableRow>            <TableRow
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_margin="7dp"
-                    >
-
-                   <Button
-                       android:id="@+id/personel_info_next"
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:text="Next"
-                       android:layout_marginRight="17dp"
-                       android:layout_gravity="right"
-                      />
 
 
                 </LinearLayout>

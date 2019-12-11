@@ -99,10 +99,10 @@ setAdds();
         startActivity(new Intent(WelcomeScreen.this, DashbordEmployer.class));
        else
         {
-            FirstTime=userinfo.getString("FirstTime",null);
-            if(FirstTime==null)
-                Toast.makeText(WelcomeScreen.this,"firstTime",Toast.LENGTH_SHORT).show();
-            else
+           // FirstTime=userinfo.getString("FirstTime",null);
+           // if(FirstTime==null)
+          //      Toast.makeText(WelcomeScreen.this,"firstTime",Toast.LENGTH_SHORT).show();
+          //  else
             startActivity(new Intent(WelcomeScreen.this, DashbordStudent.class));
         }
 

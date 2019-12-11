@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -31,21 +32,30 @@ import java.util.HashMap;
 public class CV_Display extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference offerSettingsRef;
+    private SharedPreferences userinfo;
+
     TextView FullNameView,BirthDayView,PhoneView,CityView,EmailView,LanguagesView,SkillsView,ProfileView,DiplomeView,
     DomaineView,OfferTypeView;
     ImageView imageUser;
-    String candidateId;
+    String candidateId,StudentOrEmployer,IdUser;
     HashMap<String,String> user=new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
+        StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
+        IdUser=userinfo.getString("id",null);
+        if(StudentOrEmployer.equals("Employer"))
         setContentView(R.layout.cv_layout);
+        else
+            setContentView(R.layout.cv_layout2);
         database = FirebaseDatabase.getInstance();
         Intent intent=getIntent();
       if(intent!=null)
         {
             candidateId=intent.getStringExtra("candidateId");
         }
+
         instantiateViews();
         getFromFireBase();
 
@@ -147,13 +157,20 @@ public class CV_Display extends AppCompatActivity {
     }
     public void no(View view)
     {
-        Toast.makeText(CV_Display.this,"NO!",Toast.LENGTH_SHORT).show();
+
+        offerSettingsRef=database.getReference("EmployersInbox").child(IdUser).child(candidateId);
+        offerSettingsRef.removeValue();
+        startActivity(new Intent(CV_Display.this,InboxForEmployers.class));
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-
-        inflater.inflate(R.menu.cv_menu, menu);
+        if(StudentOrEmployer.equals("Employer"))
+        inflater.inflate(R.menu.cv_menu_employer, menu);
+        else
+            inflater.inflate(R.menu.cv_menu_student, menu);
 
 
         return true;
@@ -161,7 +178,7 @@ public class CV_Display extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        if(StudentOrEmployer.equals("Employer"))
         switch (item.getItemId()) {
             case R.id.download_cv:
                 Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
@@ -169,6 +186,17 @@ public class CV_Display extends AppCompatActivity {
 
 
         }
+        else
+            switch (item.getItemId()) {
+                case R.id.download_cv:
+                    Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.edit_cv:
+                    Toast.makeText(CV_Display.this, "edit", Toast.LENGTH_SHORT).show();
+                    return true;
+
+
+            }
         return true;
     }
 }

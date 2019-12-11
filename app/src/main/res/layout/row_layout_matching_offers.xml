@@ -45,11 +45,5 @@
         android:textAlignment="center"
         />
 
-    <Button
-        android:id="@+id/deleteButt"
-        android:layout_width="38dp"
-        android:layout_height="20dp"
-        android:layout_weight="0"
-       android:background="@drawable/delete_icon"
-        ></Button>
+
 </LinearLayout>

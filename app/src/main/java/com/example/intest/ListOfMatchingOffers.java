@@ -28,10 +28,13 @@ public class ListOfMatchingOffers extends AppCompatActivity implements MyRecycle
     List<String> OfferAverageList ;
     List<String> OfferAverageListCopy ;
     List<String> OfferIdsList;
+    List<String> ListToRemove=new ArrayList<>();
+    public static ListOfMatchingOffers mVariable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matching_offers_recycle);
+        mVariable=this;
         setAdds();
         Intent intent=getIntent();
         if(intent!=null)
@@ -49,7 +52,7 @@ public class ListOfMatchingOffers extends AppCompatActivity implements MyRecycle
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(ListOfMatchingOffers.this,"Id "+OfferIdsList.get(position),Toast.LENGTH_LONG).show();
+
         Intent intent =new Intent(ListOfMatchingOffers.this,ApplayAnOffre.class);
         intent.putExtra("offerId",OfferIdsList.get(position));
         intent.putExtra("averageMatching",OfferAverageList.get(position));
@@ -99,4 +102,11 @@ public class ListOfMatchingOffers extends AppCompatActivity implements MyRecycle
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
+    public static ListOfMatchingOffers getInstance()
+    {
+        return mVariable;
+    }
+
+
+
 }

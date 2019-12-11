@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.ads.AdRequest;
@@ -38,11 +39,14 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
     List<String> CandidatesFirstNames=new ArrayList<>();
     List<String> CandidatesLastNames=new ArrayList<>();
     List<String> CandidatesFullNames=new ArrayList<>();
+    List<String> ListToRemove=new ArrayList<>();
+    public static InboxForEmployers mVariable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matching_candidates_recycle);
         setAdds();
+        mVariable=this;
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
         userId=userinfo.getString("id",null);
         database = FirebaseDatabase.getInstance();
@@ -109,10 +113,10 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
     public void threadToForceWaitForLastName(final int size)
     {
         getMatchingCandidatesLastNames();
-        Thread thread = new Thread() {
+        runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
-
                 if(CandidatesLastNames.size()<size)
                 {
                     handler.post(this);
@@ -123,9 +127,8 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
                 }
 
             }
-        };
+        });
 
-        thread.start();
     }
     public void getMatchingCandidatesFirstNames()
     {
@@ -178,5 +181,22 @@ public class InboxForEmployers extends AppCompatActivity implements MyRecyclerVi
         AdView mAdView = findViewById(R.id.adViewh);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+    }
+    public static InboxForEmployers getInstance()
+    {
+        return mVariable;
+    }
+    public void addToListRemove(int position)
+    {
+        String id=MatchingCandidatesListIds.get(position);
+        ListToRemove.add(id);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(InboxForEmployers.this,DashbordEmployer.class);
+        intent.putStringArrayListExtra("ListToRemove",(ArrayList<String>)ListToRemove);
+       startActivity(intent);
     }
 }

@@ -268,9 +268,7 @@ public class tab_4 extends Fragment {
         final boolean[] checkedItems;
 
         checkedItems = new boolean[offersListItems.length];
-
         offersList= new ArrayList<>();
-
 
 
         mBuilder.setTitle("Offre you lokking for ?");

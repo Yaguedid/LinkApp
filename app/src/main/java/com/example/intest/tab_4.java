@@ -211,32 +211,46 @@ public class tab_4 extends Fragment {
                  that's an exemple
  ++++++++++  +++++++++++ ++++++++++++++++ ++++++++++++++++++++++ ++++++++++++++++++++++++*/
         for(String bool : resultkMap.values()){
-            if(bool.equals("false"))  DATA_IS_INVALISD=true;
-            break;
+            if(bool.equals("false")) {
+                DATA_IS_INVALISD = true;
+                break;
+            }
 
 
         }
         Log.d("gag",DATA_IS_INVALISD.toString());
         if(DATA_IS_INVALISD==false) {
-            Log.d("xnxx", tab_1.getInstance().name + "");
-            Log.d("xnxx", tab_1.getInstance().lastName + "");
-            Log.d("xnxx", tab_1.getInstance().phone + "");
-            Log.d("xnxx", tab_1.getInstance().email + "");
-            Log.d("xnxx", tab_1.getInstance().city + "");
-            Log.d("xnxx", tab_1.getInstance().birthDate + "");
 
 
-            Log.d("xnxx", "Domaine " + tab_2.getInstance().domainList.toString());
-            Log.d("xnxx", "Diplome " + tab_2.getInstance().niveuEtude);
 
-            Log.d("xnxx", "skills " + tab_3.getInstance().skillsList.toString() + "");
-            Log.d("xnxx", "langue " + tab_3.getInstance().langueList.toString() + "");
+            String domaineListString="",skillsListString="",langueListString="",offersListString="",PeriodListString="";
+            for(String domaine :tab_2.getInstance().domainList)
+            {
+                domaineListString+=domaine+"\n";
+            }
+            for(String skill :tab_3.getInstance().skillsList)
+            {
+                skillsListString+=skill+"\n";
+            }
+            for(String langue :tab_3.getInstance().langueList)
+            {
+                langueListString+=langue+"\n";
+            }
+            for(String typeOffer :offersList)
+            {
+                offersListString+=typeOffer+"\n";
+            }
+            for(String periode:PeriodList)
+            {
+                PeriodListString+=periode+"\n";
+            }
 
 
-            Log.d("xnxx", "offre chercher " + offersList.toString() + "");
-            Log.d("xnxx", "period de stage " + PeriodList.toString() + "");
+            TabsHolder.getInstance().stockInFireBase(tab_1.getInstance().name,tab_1.getInstance().lastName,tab_1.getInstance().phone,tab_1.getInstance().email
+                    ,tab_1.getInstance().city,tab_1.getInstance().birthDate,tab_2.getInstance().niveuEtude,domaineListString,
+                    skillsListString,langueListString,offersListString,PeriodListString);
 
-
+            TabsHolder.getInstance().goToDashbord();
 
         }else{
             Toast.makeText(context,"please chek your data ",Toast.LENGTH_SHORT).show();

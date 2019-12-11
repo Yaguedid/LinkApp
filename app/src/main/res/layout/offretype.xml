@@ -28,7 +28,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Offres"
+            android:text="Type D'Offres Chérchées"
             android:textAllCaps="true"
 
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/Verifcation_Button"
-            android:text="Offres you looking for ?" />
+            android:text="type ?" />
 
         <TextView
             android:id="@+id/offresSelected_id"
@@ -67,7 +67,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Period"
+            android:text="Période Désirée"
             android:textAllCaps="true"
 
             android:textStyle="bold" />
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/Verifcation_Button"
-            android:text="Period ?" />
+            android:text="Période ?" />
 
         <TextView
             android:id="@+id/periodSelected_id"
@@ -102,7 +102,9 @@
             android:id="@+id/next_offre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:layout_gravity="center"
+            android:text="Verifier"
+            android:drawableRight="@drawable/chekicon"
 
             />
     </LinearLayout>

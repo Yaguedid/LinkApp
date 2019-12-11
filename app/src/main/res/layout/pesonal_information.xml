@@ -72,7 +72,7 @@
                         android:id="@+id/naameFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Name"
+                        android:text="Prénom"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
@@ -112,7 +112,7 @@
                     android:id="@+id/lasnameFiled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Last Name"
+                    android:text="Nom"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
@@ -157,7 +157,7 @@
                         android:layout_marginRight="17dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="8dp"
-                        android:text="Your Email"
+                        android:text="émail"
 
                         />
 
@@ -195,7 +195,7 @@
                         android:id="@+id/phoneFiled"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Phone"
+                        android:text=" N° télephone"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginRight="17dp"
@@ -241,7 +241,7 @@
                         android:layout_marginRight="17dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
-                        android:text="Your City"
+                        android:text="Villes où vous\n êtes disponible"
                         android:textColor="@color/colorPrimaryDark"
 
 
@@ -283,7 +283,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Birth Day"
+                        android:text="Date de \nNaissance"
 
                         />
 

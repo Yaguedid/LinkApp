@@ -3,6 +3,7 @@ package com.example.intest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -59,7 +60,7 @@ public class tab_1 extends Fragment  implements TextWatcher {
     String city="";
 
     Button chooseImage;
-
+    private SharedPreferences userinfo;
 
     int PICK_IMAGE=3;
     Uri imgUri;
@@ -74,7 +75,7 @@ public class tab_1 extends Fragment  implements TextWatcher {
 
     public static tab_1  tab1_var;
     public static HashMap<String,String> VerfyInfo =new HashMap<>();
-
+    private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser,StudentOrEmployer;
     Boolean FILED_VERIFICATION=false;
     Boolean COLOR_VERIFICATION=false;
 
@@ -84,6 +85,13 @@ public class tab_1 extends Fragment  implements TextWatcher {
             @NonNull LayoutInflater inflater, final ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.pesonal_information, container, false);
+        userinfo=TabsHolder.getInstance().getSharedPreferences("userinfos",TabsHolder.getInstance().MODE_PRIVATE);
+        EmailUser=userinfo.getString("email",null);
+        FisrtnameUser=userinfo.getString("firstname",null);
+        LastNameUser=userinfo.getString("lastname",null);
+        IdUser=userinfo.getString("id",null);
+        PictureUser=userinfo.getString("picture",null);
+        StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
 
         tab1_var=this;
         context=this.getActivity();
@@ -163,10 +171,10 @@ public class tab_1 extends Fragment  implements TextWatcher {
 
     private void initUserInfo() {
 
-        Picasso.with(getActivity()).load("https://media.licdn.com/dms/image/C4D03AQGVFKFu7quDXw/profile-displayphoto-shrink_100_100/0?e=1581552000&v=beta&t=bsjTy5dFDcBk6mkloiAAPyL_ktPTKwYaex7MiaZtncM").into(userImage);
-        userName.setText("redouan");
-        userLastName.setText("eddafali");
-        userEmail.setText("xxx@gmail.com");
+        Picasso.with(getActivity()).load(PictureUser).into(userImage);
+        userName.setText(FisrtnameUser);
+        userLastName.setText(LastNameUser);
+        userEmail.setText(EmailUser);
 
     }
 

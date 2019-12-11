@@ -377,6 +377,8 @@
         android:textStyle="bold|italic"
 
         />
+
+
     <TextView
         android:id="@+id/profileId"
         android:layout_width="match_parent"

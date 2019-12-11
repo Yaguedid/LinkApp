@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.intest.function.SendSms;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +57,7 @@ public class CV_Display extends AppCompatActivity {
         {
             candidateId=intent.getStringExtra("candidateId");
         }
+
 
         instantiateViews();
         getFromFireBase();
@@ -180,7 +183,7 @@ public class CV_Display extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(StudentOrEmployer.equals("Employer"))
         switch (item.getItemId()) {
-            case R.id.download_cv:
+            case R.id.download_cv_candidate:
                 Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
                 return true;
 
@@ -188,9 +191,6 @@ public class CV_Display extends AppCompatActivity {
         }
         else
             switch (item.getItemId()) {
-                case R.id.download_cv:
-                    Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
-                    return true;
                 case R.id.edit_cv:
                     Toast.makeText(CV_Display.this, "edit", Toast.LENGTH_SHORT).show();
                     return true;

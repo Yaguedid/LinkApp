@@ -235,6 +235,9 @@ public class tab_4 extends Fragment {
 
             Log.d("xnxx", "offre chercher " + offersList.toString() + "");
             Log.d("xnxx", "period de stage " + PeriodList.toString() + "");
+
+
+
         }else{
             Toast.makeText(context,"please chek your data ",Toast.LENGTH_SHORT).show();
         }

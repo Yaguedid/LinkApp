@@ -99,10 +99,10 @@ setAdds();
         startActivity(new Intent(WelcomeScreen.this, DashbordEmployer.class));
        else
         {
-            FirstTime=userinfo.getString("FirstTime",null);
-            if(FirstTime==null)
-              startActivity(new Intent(WelcomeScreen.this,TabsHolder.class));
-            else
+         //   FirstTime=userinfo.getString("FirstTime",null);
+           // if(FirstTime==null)
+             // startActivity(new Intent(WelcomeScreen.this,TabsHolder.class));
+            //else
             startActivity(new Intent(WelcomeScreen.this, DashbordStudent.class));
         }
 

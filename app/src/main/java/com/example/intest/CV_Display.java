@@ -3,12 +3,16 @@ package com.example.intest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.intest.download.DownloadTask;
 import com.example.intest.function.SendSms;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -184,7 +189,13 @@ public class CV_Display extends AppCompatActivity {
         if(StudentOrEmployer.equals("Employer"))
         switch (item.getItemId()) {
             case R.id.download_cv_candidate:
-                Toast.makeText(CV_Display.this, "download", Toast.LENGTH_SHORT).show();
+                //String path= Environment.getExternalStorageDirectory() + "/red/";
+                //downloadFile(CV_Display.this,"studentCV","pdf","path",URL);
+
+                 String URL = "https://firebasestorage.googleapis.com/v0/b/linkdinmatching.appspot.com/o/offer_Y18x8sASH_%2FPrCQ7QHDMl?alt=media&token=a384648b-88b2-4227-9413-06b60e36e582";
+                 new DownloadTask(CV_Display.this, URL,"EtudiatntCv");
+
+
                 return true;
 
 
@@ -199,4 +210,7 @@ public class CV_Display extends AppCompatActivity {
             }
         return true;
     }
+
+
+
 }

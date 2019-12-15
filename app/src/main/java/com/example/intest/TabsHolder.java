@@ -49,7 +49,7 @@ public class TabsHolder  extends AppCompatActivity {
 
         chekMap.put("offre_type","false");
         chekMap.put("offre_period","false");
-        chekMap.put("offre_about","false");
+        //chekMap.put("offre_about","false");
 
 
 

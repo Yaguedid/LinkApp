@@ -3,26 +3,19 @@ package com.example.intest;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,8 +41,6 @@ public class tab_4 extends Fragment {
     Button selectPeriod;
     TextView periodSelected;
 
-    EditText aboutUser;
-    String AboutUser;
 
     public List<Integer> mOffesItems = new ArrayList<>();
     public List<String> offersList=new ArrayList<>();
@@ -91,7 +82,6 @@ public class tab_4 extends Fragment {
         selectPeriod=(Button) root.findViewById(R.id.period_id);
         offerSelected=(TextView)root.findViewById(R.id.offresSelected_id);
         periodSelected=(TextView)root.findViewById(R.id.periodSelected_id);
-        aboutUser =(EditText) root.findViewById(R.id.about_uer_id);
 
         offersListItems =getResources().getStringArray(R.array.type_item);
         periodListItems =getResources().getStringArray(R.array.period_item);
@@ -128,23 +118,6 @@ public class tab_4 extends Fragment {
             }
         });
 
-        aboutUser.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                aboutUser.setBackgroundColor(getResources().getColor(R.color.Verifcation_Button));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
 
         return root;
     }
@@ -174,14 +147,11 @@ public class tab_4 extends Fragment {
 
     private void chekInfo(){
 
-        AboutUser=aboutUser.getText().toString();
 
         if(!offersList.isEmpty())  TabsHolder.getInstance().chekMap.put("offre_type","true");
         else TabsHolder.getInstance().chekMap.put("offre_type","false");
         if(!PeriodList.isEmpty())  TabsHolder.getInstance().chekMap.put("offre_period","true");
         else TabsHolder.getInstance().chekMap.put("offre_period","false");
-        if(!AboutUser.isEmpty()) TabsHolder.getInstance().chekMap.put("offre_about","true");
-        else TabsHolder.getInstance().chekMap.put("offre_about","false");
     }
 
 
@@ -208,7 +178,6 @@ public class tab_4 extends Fragment {
         keys.add("skills");
         keys.add("offre_type");
         keys.add("offre_period");
-        keys.add("offre_about");
 
         for (int i = 0; i < keys.size(); i++) {
             Log.d("zbbbbbb = ", "" + i + "= " + keys.get(i));
@@ -226,7 +195,7 @@ public class tab_4 extends Fragment {
                 tab_3.getInstance().chekIfFiledEmpty();
 
 
-                if (boolindex.equals(keys.get(10)) || boolindex.equals(keys.get(11)) || boolindex.equals(keys.get(12)) ) {
+                if (boolindex.equals(keys.get(10)) || boolindex.equals(keys.get(11))) {
                     FILED_VERIFICATION = true;
                     chekIfFiledEmpty();
 
@@ -242,11 +211,10 @@ public class tab_4 extends Fragment {
                  that's an exemple
  ++++++++++  +++++++++++ ++++++++++++++++ ++++++++++++++++++++++ ++++++++++++++++++++++++*/
         for(String bool : resultkMap.values()){
+            if(bool.equals("false"))  DATA_IS_INVALISD=true;
+            break;
 
-            if(bool.equals("false")){
-                DATA_IS_INVALISD=true;
-                break;
-            }
+
         }
         Log.d("gag",DATA_IS_INVALISD.toString());
         if(DATA_IS_INVALISD==false) {
@@ -258,69 +226,23 @@ public class tab_4 extends Fragment {
             Log.d("xnxx", tab_1.getInstance().birthDate + "");
 
 
+            Log.d("xnxx", "Domaine " + tab_2.getInstance().domainList.toString());
+            Log.d("xnxx", "Diplome " + tab_2.getInstance().niveuEtude);
 
-        }
-
-        if(DATA_IS_INVALISD==false) {
+            Log.d("xnxx", "skills " + tab_3.getInstance().skillsList.toString() + "");
+            Log.d("xnxx", "langue " + tab_3.getInstance().langueList.toString() + "");
 
 
             Log.d("xnxx", "offre chercher " + offersList.toString() + "");
             Log.d("xnxx", "period de stage " + PeriodList.toString() + "");
-            Log.d("xnxx", "about " + AboutUser.toString() + "");
 
-            String domaineListString="",skillsListString="",langueListString="",offersListString="",PeriodListString="";
-            for(String domaine :tab_2.getInstance().domainList)
-            {
-                domaineListString+=domaine+"\n";
-            }
-            for(String skill :tab_3.getInstance().skillsList)
-            {
-                skillsListString+=skill+"\n";
-            }
-            for(String langue :tab_3.getInstance().langueList)
-            {
-                langueListString+=langue+"\n";
-            }
-            for(String typeOffer :offersList)
-            {
-                offersListString+=typeOffer+"\n";
-            }
-            for(String periode:PeriodList)
-            {
-                PeriodListString+=periode+"\n";
-            }
 
-            Log.d("xnxx name", tab_1.getInstance().name + "");
-            Log.d("xnxx lastName", tab_1.getInstance().lastName + "");
-            Log.d("xnxx phone", tab_1.getInstance().phone + "");
-            Log.d("xnxx email", tab_1.getInstance().email + "");
-            Log.d("xnxx city", tab_1.getInstance().city + "");
-            Log.d("xnxx birthDate", tab_1.getInstance().birthDate + "");
-            Log.d("xnxx domaineListString", domaineListString+ "");
-            Log.d("xnxx skillsListString", skillsListString + "");
-            Log.d("xnxx langueListString", langueListString + "");
-            Log.d("xnxx offersListString", offersListString + "");
-            Log.d("xnxx PeriodListString", PeriodListString + "");
-            Log.d("xnxx Diplome", "Diplome " + tab_2.getInstance().niveuEtude);
-
-            TabsHolder.getInstance().stockInFireBase(tab_1.getInstance().name,tab_1.getInstance().lastName,tab_1.getInstance().phone,tab_1.getInstance().email
-                    ,tab_1.getInstance().city,tab_1.getInstance().birthDate,tab_2.getInstance().niveuEtude,domaineListString,
-                    skillsListString,langueListString,offersListString,PeriodListString);
-
-          TabsHolder.getInstance().goToDashbord();
 
         }else{
             Toast.makeText(context,"please chek your data ",Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
     }
-
-
-
 
     public void chekIfFiledEmpty(){
         if (FILED_VERIFICATION == true) {
@@ -336,9 +258,6 @@ public class tab_4 extends Fragment {
                 periodSelected.setTextColor(getResources().getColor(R.color.colorAccent));
                 selectPeriod.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             }
-            if (AboutUser.isEmpty()) {
-                aboutUser.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
 
         }
 
@@ -349,9 +268,7 @@ public class tab_4 extends Fragment {
         final boolean[] checkedItems;
 
         checkedItems = new boolean[offersListItems.length];
-
         offersList= new ArrayList<>();
-
 
 
         mBuilder.setTitle("Offre you lokking for ?");

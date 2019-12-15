@@ -195,7 +195,6 @@ public class CV_Display extends AppCompatActivity {
 
 
         return true;
-
     }
 
     @Override

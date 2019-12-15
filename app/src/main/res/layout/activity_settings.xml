@@ -34,12 +34,13 @@
                     android:layout_margin="10dp"
                     android:layout_marginBottom="30dp">
 
-                    <Button
+                    <Switch
+                        android:id="@+id/amEmp_switch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Am employer"
-                        android:onClick="amEmployer"
-                        ></Button>
+
+                        ></Switch>
 
 
                 </LinearLayout>
@@ -54,12 +55,12 @@
 
 
 
-                        <Button
+                        <Switch
+                            android:id="@+id/amStud_switch"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Am Student"
-                            android:onClick="amStudent"
-                            ></Button>
+                            ></Switch>
 
 
 
@@ -111,6 +112,16 @@
                         android:id="@+id/id_TextDomaine"
                         android:textColor="@color/colorPrimary"
                         />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:layout_weight="100"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -192,6 +203,13 @@
                         android:textColor="@color/colorPrimary"
                         />
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="450dp"
+                        android:onClick="ApplySettings"
+                        android:text="Apply settings"></Button>
+
                 </LinearLayout>
 
             </TableRow>
@@ -202,24 +220,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="100"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="7dp"
-                    >
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="450dp"
-                        android:text="Apply settings"
-                        android:onClick="ApplySettings"
-                        ></Button>
-
-                </LinearLayout>
 
             </TableRow>
 

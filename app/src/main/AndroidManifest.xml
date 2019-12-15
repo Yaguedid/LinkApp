@@ -44,7 +44,6 @@
 
 
 
-
         <activity
             android:name=".VeryFirstActivity"
             android:theme="@style/AppTheme2">

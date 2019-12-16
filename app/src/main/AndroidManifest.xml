@@ -16,25 +16,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".navigation.addText">
+        <activity android:name=".EmloyerInfos"
+            android:theme="@style/AppTheme2"
+            >
+
 
         </activity>
-
-        <activity
-            android:name=".navigation.DashbordNavigation"
-            android:label="@string/title_activity_dashbord_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8266359058019254~3805818182" />
 
-        <activity android:name=".CV_Input" />
         <activity android:name=".function.SendSms" />
-        <activity android:name=".CV_Display" />
-        <activity
-            android:name=".DashbordStudent"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CV_Display" >
+
+        </activity>
+        <activity android:name=".DashbordStudent" />
         <activity android:name=".Settings" />
         <activity
             android:name=".InboxForStudents"
@@ -47,13 +44,7 @@
             android:theme="@style/AppTheme2" />
         <activity
             android:name=".TabsHolder"
-            android:theme="@style/AppTheme2" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme2" />
         <activity
             android:name=".VeryFirstActivity"
             android:theme="@style/AppTheme2">
@@ -69,9 +60,7 @@
         <activity
             android:name=".SharchForOffer"
             android:theme="@style/AppTheme2" />
-        <activity
-            android:name=".DashbordEmployer"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DashbordEmployer" />
         <activity
             android:name=".ListOfMatchingOffers"
             android:theme="@style/AppTheme2" />

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
-
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,7 +27,8 @@ public class tab_3  extends Fragment {
 
     TextView skillsSelected;
     TextView LangugeSelected;
-
+    public int idOfTextView=0;
+    LinearLayout Langagelayout;
     public List<Integer> mSkillsItems = new ArrayList<>();
     public List<String> skillsList =new ArrayList<>();
     String[] skillsListItems;
@@ -38,22 +39,18 @@ public class tab_3  extends Fragment {
     public List<String> langueList=new ArrayList<>();
     String[] langueListItems;
     AlertDialog.Builder langueBuilder ;
-
+    View root;
     Context context;
     public static tab_3  tab3_var;
 
     Boolean FILED_VERIFICATION=false;
-
-    private LinearLayout parentLinearLayout;
 
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.skills, container, false);
-
-
+         root = inflater.inflate(R.layout.skills, container, false);
 
         tab3_var=this;
         context=this.getActivity();
@@ -103,21 +100,7 @@ public class tab_3  extends Fragment {
 
         });
 
-        parentLinearLayout = (LinearLayout) root.findViewById(R.id.parent_linear_layout);
-        Button add =root.findViewById(R.id.add_field_button);
-        final Button delete =root.findViewById(R.id.delete_button);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onAddField();
-            }
-        });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDelete(v);
-            }
-        });
+
 
         return root;
     }
@@ -226,6 +209,9 @@ public class tab_3  extends Fragment {
 
                 if(isChecked){
                     mLanguetems.add(position);
+                    //add a textview and check list and button
+                    //add the id of the textview in a list
+
                 }else{
                     mLanguetems.remove((Integer.valueOf(position)));
                 }
@@ -286,6 +272,15 @@ public class tab_3  extends Fragment {
 
 
 
+
+
+
+
+
+
+
+
+
     private  void checkIfListEmpty(List<String> list, TextView textView){
         if(!list.isEmpty()){
 
@@ -330,14 +325,5 @@ public class tab_3  extends Fragment {
 
     }
 
-    public void onAddField() {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.field, null);
-        // Add the new row before the add field button.
-        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
-    }
 
-    public void onDelete(View v) {
-        parentLinearLayout.removeView((View) v.getParent());
-    }
 }

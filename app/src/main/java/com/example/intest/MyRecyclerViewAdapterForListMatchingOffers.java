@@ -36,7 +36,6 @@ public class MyRecyclerViewAdapterForListMatchingOffers extends RecyclerView.Ada
         return new ViewHolder(view);
     }
 
-
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {

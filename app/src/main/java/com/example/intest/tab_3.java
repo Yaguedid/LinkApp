@@ -44,7 +44,7 @@ public class tab_3  extends Fragment {
 
     Boolean FILED_VERIFICATION=false;
 
-    private LinearLayout parentLinearLayout;
+    public LinearLayout parentLinearLayout;
 
 
     @Override
@@ -331,10 +331,11 @@ public class tab_3  extends Fragment {
     }
 
     public void onAddField() {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field, null);
-        // Add the new row before the add field button.
         parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
+        TabsHolder.getInstance().parentLinearLayout=parentLinearLayout;
+        // Add the new row before the add field but.addView(rowView, parentLinearLayout.getChildCount() - 1);
     }
 
     public void onDelete(View v) {

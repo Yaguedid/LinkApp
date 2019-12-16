@@ -65,6 +65,7 @@ public class CV_Display extends AppCompatActivity {
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
         StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
         IdUser=userinfo.getString("id",null);
+
         if(StudentOrEmployer.equals("Employer"))
         setContentView(R.layout.activity_cv__input);
         else

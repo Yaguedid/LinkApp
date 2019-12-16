@@ -35,6 +35,7 @@
                 android:layout_width="80dp"
                 android:id="@+id/imageUser"
                 android:layout_marginTop="20dp"
+
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/exemple_pic"
                 />

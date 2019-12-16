@@ -16,11 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HeaderAdapter"></activity>
+        <activity android:name=".navigation.addText">
+
+        </activity>
+
         <activity
             android:name=".navigation.DashbordNavigation"
             android:label="@string/title_activity_dashbord_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -44,7 +47,13 @@
             android:theme="@style/AppTheme2" />
         <activity
             android:name=".TabsHolder"
-            android:theme="@style/AppTheme2" />
+            android:theme="@style/AppTheme2" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".VeryFirstActivity"
             android:theme="@style/AppTheme2">

@@ -1,7 +1,10 @@
 package com.example.intest;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +31,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,11 +44,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class DashbordStudent extends AppCompatActivity implements MyRecyclerViewAdapterForListMatchingOffers.ItemClickListener{
-    TextView FirstNameUserView,LastNameUserView;
+public class DashbordStudent extends AppCompatActivity implements MyRecyclerViewAdapterForListMatchingOffers.ItemClickListener,
+        NavigationView.OnNavigationItemSelectedListener{
     private String EmailUser,FisrtnameUser,LastNameUser,IdUser,PictureUser;
     private SharedPreferences userinfo;
-    ImageView userImage;
     Handler handler = new Handler();
     FirebaseDatabase database;
     MyRecyclerViewAdapterForListMatchingOffers adapter;
@@ -80,6 +83,7 @@ public class DashbordStudent extends AppCompatActivity implements MyRecyclerView
         setAdds();
         getInfosFromSharedPreferences();
         instantiateViews();
+        setMyNavigatinBar();
         database = FirebaseDatabase.getInstance();
         getCvFromFirebase();
     }
@@ -93,47 +97,7 @@ public class DashbordStudent extends AppCompatActivity implements MyRecyclerView
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
 
-        inflater.inflate(R.menu.menu_student,menu);
-
-
-        return true;
-    }
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId())
-        {
-            case R.id.settings:
-                startActivity(new Intent(DashbordStudent.this, Settings.class));
-                return true;
-            case R.id.myCv:
-               Intent intent=new Intent(DashbordStudent.this,CV_Display.class);
-               intent.putExtra("candidateId",IdUser);
-               startActivity(intent);
-                return true;
-            case R.id.advanced_shearch:
-                startActivity(new Intent(DashbordStudent.this, SharchForOffer.class));
-                return true;
-
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
-    private void instantiateViews() {
-
-        FirstNameUserView=findViewById(R.id.FirstNameUser);
-        LastNameUserView=findViewById(R.id.LastNameUser);
-        userImage=findViewById(R.id.UserImage);
-        FirstNameUserView.setText(FisrtnameUser);
-        LastNameUserView.setText(LastNameUser);
-        new DashbordStudent.DownloadImageTask((ImageView)userImage)
-                .execute(PictureUser);
-
-    }
 
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -275,6 +239,115 @@ public class DashbordStudent extends AppCompatActivity implements MyRecyclerView
         adapter = new MyRecyclerViewAdapterForListMatchingOffers(this,OfferTitlesList,OfferAverageList);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_student, menu);
+        return true;
+    }
+
+
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()) {
+            case R.id.nav_profile:
+                Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.nav_home:
+                Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.nav_contact:
+                Toast.makeText(this, "contact us", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.nav_share:
+                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_email:
+                Toast.makeText(this, "inbox", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.nav_setting:
+                Toast.makeText(this, "setting", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(DashbordStudent.this, Settings.class));
+                break;
+            case R.id.nav_cv:
+                Toast.makeText(this, "cv", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(DashbordStudent.this,CV_Display.class);
+                intent.putExtra("candidateId",IdUser);
+                startActivity(intent);
+
+                break;
+
+
+        }
+        return true;
+    }
+
+    @Override
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId())
+        {
+
+            case R.id.advanced_shearch:
+                startActivity(new Intent(DashbordStudent.this, SharchForOffer.class));
+                return true;
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void instantiateViews() {
+        TextView card_user_name =(TextView) findViewById(R.id.card_user_name);
+        TextView card_user_name_2 =(TextView) findViewById(R.id.card_user_name_2);
+        ImageView card_img =(ImageView) findViewById(R.id.card_img);
+
+        card_user_name.setText(FisrtnameUser +" " + LastNameUser);
+        card_user_name_2.setText("Welcome back "+FisrtnameUser +" let's find you a job !" );
+        new DashbordStudent.DownloadImageTask((ImageView)card_img)
+                .execute(PictureUser);
+    }
+
+
+    private void setMyNavigatinBar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+
+        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(this,drawer,toolbar,R.string.togle_open,R.string.togle_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.haeder_name);
+        TextView nav_email = (TextView)hView.findViewById(R.id.header_email);
+        ImageView imageView=(ImageView)hView.findViewById(R.id.navImageUser);
+
+        nav_user.setText(FisrtnameUser + " " + LastNameUser);
+        nav_email.setText(EmailUser);
+        new DashbordStudent.DownloadImageTask((ImageView)imageView)
+                .execute(PictureUser);
 
     }
 }

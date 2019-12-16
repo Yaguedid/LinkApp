@@ -109,17 +109,23 @@ setAdds();
     }
     public void instanciateViews()
     {
-        FirstNameView=findViewById(R.id.FirstNameId);
-        LastNameView=findViewById(R.id.LastNameId);
-        PictureView=findViewById(R.id.imageViewId);
+        TextView card_user_name =(TextView) findViewById(R.id.card_user_name);
+        TextView card_user_name_2 =(TextView) findViewById(R.id.card_user_name_2);
+        ImageView card_img =(ImageView) findViewById(R.id.card_img);
+
+        card_user_name.setText(FisrtnameUser +" " + LastNameUser);
+        card_user_name_2.setText("Welcome back "+FisrtnameUser +" let's find you a job !" );
+        new SharchForOffer.DownloadImageTask((ImageView)card_img)
+                .execute(PictureUser);
+
+
         cityItemSelected=findViewById(R.id.id_TextVillePrefere);
         periodeItemSelected=findViewById(R.id.id_TextPeriodeStage);
-        FirstNameView.setText(FisrtnameUser);
-        LastNameView.setText(LastNameUser);
+
+
         OfferTitleView=findViewById(R.id.id_TittleOffre);
         OfferDetailtsView=findViewById(R.id.offerBody);
-        new SharchForOffer.DownloadImageTask((ImageView)PictureView)
-                .execute(PictureUser);
+
         cityItmesBtn=findViewById(R.id.id_Ville_prefere);
         periodeItemsBtn=findViewById(R.id.id_periode_de_stage);
 

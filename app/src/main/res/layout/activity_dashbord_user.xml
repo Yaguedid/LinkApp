@@ -1,169 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".PostAnOffer"
-    android:orientation="vertical"
-    android:weightSum="100"
-
-    >
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="50"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            layout="@layout/app_bar_dashbord_navigation"
+            />
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
 
-            <TableRow
+            android:background="#F4F5F5"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                android:padding="10dp"
-                android:paddingLeft="10dp"
-                android:background="#AAb8b894"
+                android:layout_height="wrap_content"
+                android:background="#fff"
                 >
 
-
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="50"
-                    android:layout_height="match_parent"
-
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/gradientbackground"
+                    android:orientation="vertical"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/UserImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/card_img"
+                        android:layout_width="200dp"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
                         app:civ_border_width="2dp"
                         app:civ_border_color="#FF000000"
+                        />
 
-                        tools:srcCompat="@tools:sample/avatars" />
-
-
+                    <TextView
+                        android:id="@+id/card_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="Wecome"
+                        android:textColor="#fff"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="50"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <androidx.cardview.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="125dp"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:cardElevation="3dp"
+                    card_view:cardUseCompatPadding="true"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginLeft="7dp"
+                    >
 
-                    <TableRow
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="50"
-                        android:background="#AAff9900"
-
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
                         >
 
-                        <TextView
-                            android:id="@+id/FirstNameUser"
+
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Nom "
-                            android:textStyle="bold|italic"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/card_user_name_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Welcome Back !"
+                                android:textSize="15dp"
+                                />
 
 
-                            android:paddingBottom="5dp"
-                            />
+                        </LinearLayout>
+                    </LinearLayout>
 
-                    </TableRow>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="50"
-                        android:layout_marginTop="5dp"
-                        android:background="#AAff9900"
-                        >
+        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/LastNameUser"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Prnnom "
-                            android:textStyle="bold|italic"
-
-                            />
-                    </TableRow>
-                </LinearLayout>
-            </TableRow>
-
-        </TableLayout>
-
-
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="50"
-        android:weightSum="100"
-        android:orientation="vertical"
-
-        >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:orientation="horizontal"
-
-        android:weightSum="100"
-        >
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="25"
-            android:layout_height="wrap_content"
-
-            />
-        <Button
-            android:id="@+id/postOffer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:text="Post an Offer"
-            android:layout_gravity="center_horizontal"
-            android:onClick="postAnOffer"
-            android:drawableRight="@drawable/post_offer_icon"
-            android:fontFamily="@font/dancing_script"
-            android:textSize="17dp"
-            />
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="25"
-            android:layout_height="wrap_content"
-
-            />
-
-
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:context=".PostAnOffer"
+            android:orientation="vertical"
             android:weightSum="100"
-            android:orientation="horizontal"
-            >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="25"
-                android:layout_height="wrap_content"
 
-                />
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="50"
+                >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="50"
+                android:weightSum="100"
+                android:orientation="vertical"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:weightSum="100"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="25"
+                        android:layout_height="wrap_content"
+
+                        />
+                    <Button
+                        android:id="@+id/postOffer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="50"
+                        android:text="Post an Offer"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="postAnOffer"
+                        android:drawableRight="@drawable/post_offer_icon"
+                        android:fontFamily="@font/dancing_script"
+                        android:textSize="17dp"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="25"
+                        android:layout_height="wrap_content"
+
+                        />
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    android:weightSum="100"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="25"
+                        android:layout_height="wrap_content"
+
+                        />
 
 
 
@@ -171,18 +198,32 @@
                 </LinearLayout>
 
 
+            </LinearLayout>
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            </com.google.android.gms.ads.AdView>
+
+
+        </LinearLayout>
     </LinearLayout>
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
 
 
-</LinearLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_dashbord_navigation"
+        app:menu="@menu/activity_dashbord_navigation_drawer"
+        android:background="@drawable/side_nav_bar_content"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

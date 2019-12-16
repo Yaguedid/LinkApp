@@ -65,11 +65,10 @@ public class CV_Display extends AppCompatActivity {
         userinfo=getSharedPreferences("userinfos", MODE_PRIVATE);
         StudentOrEmployer=userinfo.getString("StudentOrEmployer",null);
         IdUser=userinfo.getString("id",null);
-
         if(StudentOrEmployer.equals("Employer"))
-        setContentView(R.layout.activity_cv__input);
+        setContentView(R.layout.cv_layout);
         else
-            setContentView(R.layout.activity_cv__input);
+            setContentView(R.layout.cv_layout2);
         database = FirebaseDatabase.getInstance();
         Intent intent=getIntent();
       if(intent!=null)
@@ -92,10 +91,10 @@ public class CV_Display extends AppCompatActivity {
         EmailView=findViewById(R.id.emailId);
         LanguagesView=findViewById(R.id.languagesId);
         SkillsView=findViewById(R.id.skillsId);
-       // ProfileView=findViewById(R.id.profileId);
-       // DiplomeView=findViewById(R.id.dimplomeId);
+        ProfileView=findViewById(R.id.profileId);
+        DiplomeView=findViewById(R.id.dimplomeId);
         DomaineView=findViewById(R.id.genieId);
-        OfferTypeView=findViewById(R.id.typeOffer);
+        OfferTypeView=findViewById(R.id.typeOfferId);
         imageUser=findViewById(R.id.imageUser);
 
     }
@@ -131,11 +130,11 @@ public class CV_Display extends AppCompatActivity {
         LanguagesView.setMovementMethod(new ScrollingMovementMethod());
         SkillsView.setText(user.get("Skills"));
         SkillsView.setMovementMethod(new ScrollingMovementMethod());
-       // ProfileView.setText(user.get("Profil"));
-        //ProfileView.setMovementMethod(new ScrollingMovementMethod());
+        ProfileView.setText(user.get("Profil"));
+        ProfileView.setMovementMethod(new ScrollingMovementMethod());
         PhoneView.setMovementMethod(new ScrollingMovementMethod());
-        //DiplomeView.setText(user.get("Diplomas"));
-        //DomaineView.setText(user.get("Domaine"));
+        DiplomeView.setText(user.get("Diplomas"));
+        DomaineView.setText(user.get("Domaine"));
         OfferTypeView.setText(user.get("Type_Shearched_Offer"));
 
 

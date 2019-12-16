@@ -1,1423 +1,556 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="100"
 
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/header"
-        android:background="@drawable/gradientbackground"
-
+    //*******************Left layout***********************
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="40"
+        android:orientation="vertical"
+        android:weightSum="100"
         >
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/back_icon"
+        //*******first row
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:orientation="vertical"
+            android:weightSum="100"
             >
 
-        </Button>
+            <ImageView
+                android:id="@+id/imageUser"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="75"
+                ></ImageView>
+            <EditText
+                android:id="@+id/fullNameUser"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:text="First name Second Name"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                ></EditText>
+        </LinearLayout>
+        //*****second row
+
+        <LinearLayout
+            android:id="@+id/firstRow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="55"
+            android:orientation="vertical"
+            android:weightSum="100"
+            android:scrollbars = "vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:text="Contact"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic"
+                />
+            //////////////////////////////////////////////////////////
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+
+                    android:src="@drawable/birth_day_icon"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:text="Date of Birth"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"
+
+
+                    ></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    />
+
+                <EditText
+                    android:id="@+id/birthdayId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:hint="Date of Birth"
+                    android:textColor="#000"
+                    android:paddingLeft="5dp"
+                    android:gravity="center_vertical"
+                    ></EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:src="@drawable/number_phone_icon"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:text="Phone"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"
+
+
+                    ></TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    />
+
+                <EditText
+                    android:id="@+id/phoneId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:hint="Phone"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    ></EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:src="@drawable/location_icon"
+                    />
+                <Button
+                    android:id="@+id/cityIdButt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:text="Ville"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:textSize="15dp"
+                    android:paddingLeft="5dp"
+                    ></Button>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    />
+                <EditText
+                    android:id="@+id/cityId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:textColor="#000"
+                    android:hint="ville"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    ></EditText>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:src="@drawable/email_icon"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:text="Email"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:textSize="15dp"
+                    android:paddingLeft="5dp"
+                    ></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:weightSum="100"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    />
+                <EditText
+                    android:id="@+id/emailId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="85"
+                    android:hint="Email"
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:scrollbars = "vertical"
+                    ></EditText>
+            </LinearLayout>
+            ////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+        //****third row
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/languagesIdButt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="38"
+                android:text="Langues"
+                android:gravity="center"
 
-            android:orientation="vertical">
-
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_height="80dp"
-                android:layout_width="80dp"
-                android:id="@+id/imageUser"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/exemple_pic"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic"
                 />
-
             <TextView
-                android:id="@+id/fullNameUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/languagesId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:hint="Langues"
+                android:gravity="center"
+                android:textColor="#000"
+                android:scrollbars = "vertical"
 
-                android:text="Wiliam Snoe"
-                android:textColor="#fff"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+                />
+            <Button
+                android:id="@+id/skillsIdButt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="38"
+                android:text="Skills"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic"
+                />
+            <TextView
+                android:id="@+id/skillsId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:hint="Skills"
+                android:gravity="center"
+                android:textColor="#000"
+                android:scrollbars = "vertical"
+
+                />
         </LinearLayout>
+    </LinearLayout>
 
 
-    </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_above="@id/footer2"
-        android:background="#AAebebe0"
 
-        android:fillViewport="true"
+
+    //*******************Dots***********************
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
+            android:background="#ccccb3"/></LinearLayout>
+
+
+    //***************right layout********************
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="59"
+        android:weightSum="100"
+        android:orientation="vertical"
+        >
+        //*******first row
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35"
+            android:weightSum="100"
             android:orientation="vertical"
             >
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="3dp"
-                android:padding="10dp"
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="3dp"
-                card_view:cardUseCompatPadding="true"
-
-
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    android:weightSum="100">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginBottom="10dp"
-                        android:text="Personal informations"
-                        android:textColor="#000"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Prenom"
-                            android:textColor="#455454"
-                            android:textSize="15dp"
-
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/Firstname"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="prenom"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="nom"
-                            android:textColor="#455454"
-                            android:textSize="15dp"
-
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/LastName"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="nom"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="email"
-                            android:textColor="#455454"
-
-                            android:textSize="15dp"></TextView>
-
-                        <TextView
-                            android:id="@+id/emailId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="email"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="N° téléphone"
-                            android:textColor="#455454"
-
-                            android:textSize="15dp"></TextView>
-
-                        <TextView
-                            android:id="@+id/phoneId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="N° téléphone"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Ville"
-                            android:textColor="#455454"
-
-                            android:textSize="15dp"></TextView>
-
-                        <TextView
-                            android:id="@+id/cityId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="Ville"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:fontFamily="@font/myriadpro_semibold"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date de Naissance"
-                            android:textColor="#455454"
-
-                            android:textSize="15dp"></TextView>
-
-                        <TextView
-                            android:id="@+id/birthdayId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:gravity="center_vertical"
-                            android:hint="date de naissance"
-                            android:paddingLeft="5dp"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:padding="10dp"
-
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="100"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Education"
-                        android:textStyle="bold"
-                        android:textColor="#341825"
-                        android:layout_marginBottom="10dp"
-
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Ecole"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/Ecole"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="Ecole"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Année"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/SchoolYear"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="annee"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Diplome"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/Diplome"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="diplome"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Filière"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/genieId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="filiere"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-
-
-
-
-                </LinearLayout>
-
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:padding="10dp"
-
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="100"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Competances"
-                        android:textStyle="bold"
-                        android:textColor="#341825"
-                        android:layout_marginBottom="10dp"
-
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textAlignment="center"
-                            android:text="Langues"
-                            android:textColor="#455454"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-                            android:fontFamily="@font/myriadpro_semibold"
-
-                            ></TextView>
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/langue1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <ImageView
-                            android:id="@+id/level_langue1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="50"
-
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-
-
-
-                            ></ImageView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/langue2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <ImageView
-                            android:id="@+id/level_langue2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="50"
-
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-
-
-
-                            ></ImageView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/languagesId"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <ImageView
-                            android:id="@+id/level_langue3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="50"
-
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-
-
-
-                            ></ImageView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/langue4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <ImageView
-                            android:id="@+id/level_langue4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="50"
-
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-
-
-
-                            ></ImageView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/langue5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <ImageView
-                            android:id="@+id/level_langue5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="50"
-
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-
-
-
-                            ></ImageView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Hard Skills"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/HardSkills"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="hard skills"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="SoftSkills"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/skillsId"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="50"
-                            android:hint="soft_skills"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></TextView>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-
-
-
-
-
-                </LinearLayout>
-
-
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:padding="10dp"
-
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="100"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Experiences"
-                        android:textStyle="bold"
-                        android:textColor="#341825"
-                        android:layout_marginBottom="10dp"
-
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/exp1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/from1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-                        <TextView
-                            android:id="@+id/to1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/exp2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/from2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-                        <TextView
-                            android:id="@+id/to2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/exp3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/from3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-                        <TextView
-                            android:id="@+id/to3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-
-
-
-
-
-
-
-                </LinearLayout>
-
-
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="#fff"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="10dp"
-                card_view:cardElevation="3dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:padding="10dp"
-
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="100"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Intéréts"
-                        android:textStyle="bold"
-                        android:textColor="#341825"
-                        android:layout_marginBottom="10dp"
-
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="40"
-                            android:text="Stage"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-                        <TextView
-                            android:id="@+id/typeOffer"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-
-                            android:layout_weight="40"
-                            android:hint="offertype"
-                            android:textColor="#455454"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-                            android:fontFamily="@font/myriadpro_semibold"
-                            ></TextView>
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:text="Date of Birth"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textSize="15dp"
-
-
-                            ></LinearLayout>
-
-                    </LinearLayout>
-
-
-
-
-
-
-
-
-                </LinearLayout>
-
-
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-
-    </ScrollView>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/footer2"
-
-        android:layout_alignParentBottom="true"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100"
-            android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="50"
-
-                android:fontFamily="@font/myriadpro_semibold"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:text="Accepter le candidat?"
-                android:textColor="#455454"
+                android:layout_weight="15"
+                android:text="Profile"
+                android:gravity="center"
+                android:textColor="#000"
                 android:textSize="20dp"
-                android:textAlignment="center"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic"
 
-                >
+                />
+            <EditText
+                android:id="@+id/profileId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="84"
+                android:hint="Profile"
+                android:gravity="center"
+                android:textColor="#000"
+                android:scrollbars = "vertical"
 
-
-            </TextView>
+                />
+            //*******************Dots***********************
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="50"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingLeft="5dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="#ccccb3"/></LinearLayout>
+            //*******
+        </LinearLayout>
+        //*******second row
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35"
+            android:weightSum="100"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:text="Education"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:paddingBottom="5dp"
+                android:textStyle="bold|italic"
+                />
+            <Button
+                android:id="@+id/dimplomeIdButt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:text="Diplome"
+                android:textColor="#000"
+                android:gravity="center"
+                android:textSize="15dp"
+                ></Button>
+            <TextView
+                android:id="@+id/dimplomeId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:hint="Diplome"
+                android:textColor="#000"
+                android:gravity="center"
+                android:textSize="15dp"
+                ></TextView>
+            <Button
+                android:id="@+id/genieIdButt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:text="Genie"
+                android:textColor="#000"
+                android:gravity="center"
+                android:textSize="15dp"
+                ></Button>
+            <TextView
+                android:id="@+id/genieId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:hint="Genie"
+                android:textColor="#000"
+                android:gravity="center"
+                android:textSize="15dp"
+                ></TextView>
+
+        </LinearLayout>
+        //*******************Dots***********************
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:paddingLeft="5dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:background="#ccccb3"/></LinearLayout>
+        //*******
+        //*******third row
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="29"
+            android:weightSum="100"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/typeOfferId"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:hint="Type d'offre rechérchée"
+                android:textColor="#000"
+                android:gravity="center"
+                android:textSize="15dp"/>
+            //*******************Dots***********************
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center_horizontal"
+                android:paddingLeft="5dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="#ccccb3"/></LinearLayout>
+            //*******
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="31.5"
+    >
+
+
+    <Button
+        android:id="@+id/typeOfferIdButt"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="18"
+        android:gravity="center"
+        android:text="Type d'offre rechérchée"
+        android:textColor="#000"
+        android:textSize="15dp" />
+</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="29"
+                android:orientation="horizontal"
                 android:weightSum="100"
-                android:orientation="horizontal">
 
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:text="yes"
+                    android:drawableLeft="@drawable/yes_icon"
 
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="30"
-                />
-
-
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="@drawable/no_icon"
-                android:onClick="no"
-                />
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="20"
-                android:layout_height="match_parent"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="@drawable/yes_icon"
-                android:onClick="yes"
-                />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="30"
-                android:layout_height="match_parent"/>
-
-
-
+                    android:onClick="yes"
+                    ></Button>
 
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
-
-    </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

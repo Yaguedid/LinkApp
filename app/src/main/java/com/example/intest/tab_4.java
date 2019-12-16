@@ -95,19 +95,19 @@ public class tab_4 extends Fragment {
 
 
         selectOffre.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) { showOffreSelected();
-                                           }
+            @Override
+            public void onClick(View v) { showOffreSelected();
+            }
 
-                                       });
+        });
 
 
 
         selectPeriod.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) { showPeriodSelected();
-                                           }
-                                       });
+            @Override
+            public void onClick(View v) { showPeriodSelected();
+            }
+        });
 
 
 

@@ -52,8 +52,8 @@ public class CV_Display extends AppCompatActivity {
     /* data base storage */
     private StorageReference mStorageRef;
     public  String CV_URL="";
-    public  String offerId="PrCQ7QHDMl";
-    public  String potulerId="Y18x8sASH_";
+    public  String offerId="Y18x8sASH_";
+    public  String potulerId="PrCQ7QHDMl";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,7 +232,7 @@ public class CV_Display extends AppCompatActivity {
             public void onSuccess(Uri uri) {
 
                 CV_URL=uri.toString();
-                Log.d("zbzbzbb",CV_URL);
+                Log.d("zbzbzb",CV_URL);
 
 
             }
